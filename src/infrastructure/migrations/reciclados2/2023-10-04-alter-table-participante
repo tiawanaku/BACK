@@ -1,0 +1,44 @@
+'use strict';
+
+const tableName = 'participante';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+
+          if (!tableDefinition.id_grado_instruccion) {
+            await queryInterface.addColumn(tableName, 'id_grado_instruccion', {
+              type         : Sequelize.UUID,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.idGradoInstruccion'),
+              field        : 'id_grado_instruccion'
+            });
+          }
+
+          if (!tableDefinition.id_estado_civil) {
+            await queryInterface.addColumn(tableName, 'id_estado_civil', {
+              type         : Sequelize.UUID,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.idEstadoCivil'),
+              field        : 'id_estado_civil'
+            });
+          }
+
+          if (!tableDefinition.direccion_laboral) {
+            await queryInterface.addColumn(tableName, 'direccion_laboral', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.direccionLaboral'),
+              field        : 'direccion_laboral'
+            });
+          }
+
+        return Promise.resolve();
+      });
+  }
+};

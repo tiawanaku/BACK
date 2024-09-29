@@ -1,0 +1,31 @@
+'use strict';
+
+const tableName = 'participante';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.id_situacion_juridica) {
+          await queryInterface.addColumn(tableName, 'id_situacion_juridica', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idSituacionJuridica',
+            field        : 'id_situacion_juridica'
+          });
+        }
+
+        if (!tableDefinition.id_medida_cautelar) {
+          await queryInterface.addColumn(tableName, 'id_medida_cautelar', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idMedidaCautelar',
+            field        : 'id_medida_cautelar'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

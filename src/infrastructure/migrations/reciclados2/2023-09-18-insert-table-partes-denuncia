@@ -1,0 +1,67 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+//items = setTimestampsSeeder(items);
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      const dataDenuncia = await queryInterface.sequelize.query(
+        'SELECT d.id FROM denuncia d;'
+      );
+      const arrayDenuncia = dataDenuncia[0];
+      const tipoParticipanteData = await queryInterface.sequelize.query(
+        `select * from sys_parametro WHERE grupo = 'TIPO_PARTICIPANTE';`
+      );
+      const TIPOPARTICIPANTE = tipoParticipanteData[0];
+      const paramVictima = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'VICTIMA' });
+      const paramDenunciante = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'DENUNCIANTE' });
+      const paramDenunciado = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'DENUNCIADO' });
+      for (let z = 0; z < arrayDenuncia.length; z++) {
+        const elm = arrayDenuncia[z];
+        const dataParticipante = await queryInterface.sequelize.query(
+          `select p.nombre_completo, p.id_tipo_participante, p.numero_documento from denuncia d, participante p where d.id = p.id_denuncia and d.id = '${elm.id}';`
+        );
+        const arrayParticipante = dataParticipante[0];
+        let victima = arrayParticipante.find(dat=> { return dat.id_tipo_participante == paramVictima.id });
+        let denunciante = arrayParticipante.find(dat=> { return dat.id_tipo_participante == paramDenunciante.id });
+        let denunciado = arrayParticipante.find(dat=> { return dat.id_tipo_participante == paramDenunciado.id });
+        victima = victima ? victima : 'NULL';
+        denunciante = denunciante ? denunciante : 'NULL';
+        denunciado = denunciado ? denunciado : 'NULL';
+        await queryInterface.sequelize.query(
+          `UPDATE denuncia SET
+            nombre_victima = CASE 
+              WHEN '${victima}' = 'NULL' THEN NULL
+              ELSE '${victima.nombre_completo}'
+            END,
+            documento_victima = CASE
+              WHEN '${victima}' = 'NULL' THEN NULL
+              ELSE '${victima.numero_documento}'
+            END,
+            nombre_denunciante = CASE
+              WHEN '${denunciante}' = 'NULL' THEN NULL
+              ELSE '${denunciante.nombre_completo}'
+            END,
+            documento_denunciante = CASE
+              WHEN '${denunciante}' = 'NULL' THEN NULL
+              ELSE '${denunciante.numero_documento}'
+            END,
+            nombre_denunciado = CASE
+              WHEN '${denunciado}' = 'NULL' THEN NULL
+              ELSE '${denunciado.nombre_completo}'
+            END,
+            documento_denunciado = CASE
+              WHEN '${denunciado}' = 'NULL' THEN NULL
+              ELSE '${denunciado.numero_documento}'
+            END
+            where id = '${elm.id}';`
+        );
+      }
+    },
+    down (queryInterface, Sequelize) {}
+};

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border: solid 1px black;
+      padding: 10px;
+
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <table class="line">
+    <tbody>
+      <tr>
+        <td rowspan="3" width="150px">
+          <img src=<%= imagen %> alt="" class="size-img" />
+        </td>
+        <td class="text-bold text-center text-sm" style="font-size: 15px;">Registro:</td>
+        <td class="text-bold text-sm" width="150px" style="font-size: 10px;"> <%= header.celdaCodigo %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm text-center" rowspan="2" style="font-size: 20px;"> <h3><%= header.celdaDescripcion %></h3> </td>
+        <td class="text-bold text-sm" style="font-size: 10px;"> <%= header.celdaFecha %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm" style="font-size: 10px;"> <%= header.celdaVersion %> </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-center text-sm" colspan="2">GOBIERNO AUTÓNOMO MUNICIPAL DE EL ALTO</td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm" colspan="2">CASO: <%= denuncia.correlativoGamea %></td>
+      </tr>
+      <% if (denuncia.codigoDenuncia) { %>
+        <tr>
+          <td class="text-center text-sm" colspan="2">CÓDIGO FISCALÍA: <%= denuncia.codigoDenuncia %> </td>
+        </tr>
+      <% } %>
+      <tr>
+        <td class="text-center text-sm" colspan="2">FECHA: <%= denuncia.fechaIngreso %></td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm" style="width: 200px;">RELACIÓN DE LOS HECHOS</td>
+        <td> <span class="text-sm"><%= denuncia.relacionHecho %></span></td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm">DELITOS: </td>
+        <td>
+          <% denuncia.delitos.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td class="text-center text-bold">ESTADO ACTUAL: </td>
+        <td>
+        <% denuncia.seguimiento.forEach((seguimiento,index) => {%>
+            <li>
+              <%if (seguimiento.estadoDenuncia === seguimiento.etapaDenuncia) { %>
+                <p class="text-md"><%= seguimiento.estadoDenuncia %> - <%= seguimiento.fechaActuacion %></p>
+              <% } else { %>
+                <p class="text-md"><%= seguimiento.estadoDenuncia %> - <%= seguimiento.etapaDenuncia %> - <%= seguimiento.fechaActuacion %></p>
+              <% } %>
+              <p class="text-md"><%= seguimiento.actuacion %></p>
+            </li>
+          <% });%>
+        </td>
+      </tr> -->
+      <tr>
+        <td class="text-center text-sm">FIRMA DEL SOLICITANTE</td>
+        <td class="text-center text-sm">
+          <p class="text-sm">SOLICITANTE:</p>
+          <% victimas.forEach((victima,index) => {%>
+            <br>
+            <br>
+            <hr width="200px">
+            <p><%= victima.nombreCompleto %></p>
+            <p><%= victima.numeroDocumento %></p>
+          <% });%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

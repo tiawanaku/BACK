@@ -1,0 +1,82 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+//items = setTimestampsSeeder(items);
+
+let items = [{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-14',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Contención Emocional',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA - CONTENCIÓN EMOCIONAL',
+  tipo: 'CONTENCION'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-21',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha Acompañamiento a la víctima',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – ACOMPAÑAMIENTO A LA VÍCTIMA',
+  tipo: 'ACOMPANAMIENTO'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-12',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Orientación Psicoeducativa',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – ORIENTACIÓN PSICOEDUCATIVA',
+  tipo: 'ORIENTACION'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-13',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Evaluación Psicológica',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – EVALUACIÓN',
+  tipo: 'EVALUACION'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-15',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Terapia Psicológica',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – TERAPIA PSICOLÓGICA',
+  tipo: 'TERAPIA'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-22',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Actividad Psicología',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – ACTIVIDAD',
+  tipo: 'ACTIVIDAD'
+},
+{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-23',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Ficha de Coordinación Interinstitucional Psicología',
+  titulo: 'GABINETE PSICOLÓGICO SEPDAVI FICHA DE ASISTENCIA PSICOLÓGICA – COORDINACIÓN INTERINSTITUCIONAL',
+  tipo: 'COORDINACION'
+}];
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('psicologia_header', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

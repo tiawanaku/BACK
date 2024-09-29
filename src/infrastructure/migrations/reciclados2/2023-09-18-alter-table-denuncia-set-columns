@@ -1,0 +1,73 @@
+'use strict';
+
+const tableName = 'denuncia';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.nombre_victima) {
+          await queryInterface.addColumn(tableName, 'nombre_victima', {
+            type         : Sequelize.TEXT,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.nombreVictima'),
+            field        : 'nombre_victima'
+          });
+        }
+
+        if (!tableDefinition.documento_victima) {
+          await queryInterface.addColumn(tableName, 'documento_victima', {
+            type         : Sequelize.TEXT,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.documentoVictima'),
+            field        : 'documento_victima'
+          });
+        }
+
+        if (!tableDefinition.nombre_denunciante) {
+            await queryInterface.addColumn(tableName, 'nombre_denunciante', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.nombreDenunciante'),
+              field        : 'nombre_denunciante'
+            });
+          }
+
+          if (!tableDefinition.documento_denunciante) {
+            await queryInterface.addColumn(tableName, 'documento_denunciante', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.documentoDenunciante'),
+              field        : 'documento_denunciante'
+            });
+          }
+
+          if (!tableDefinition.nombre_denunciado) {
+            await queryInterface.addColumn(tableName, 'nombre_denunciado', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.nombreDenunciado'),
+              field        : 'nombre_denunciado'
+            });
+          }
+
+          if (!tableDefinition.documento_denunciado) {
+            await queryInterface.addColumn(tableName, 'documento_denunciado', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.documentoDenunciado'),
+              field        : 'documento_denunciado'
+            });
+          }
+
+        return Promise.resolve();
+      });
+  }
+};

@@ -1,0 +1,17 @@
+'use strict';
+
+const {
+    setTimestampsSeeder
+  } = require('../lib/util');
+
+let items = [{
+    id:'e6088367-dbc6-4f21-986f-d2f97d26f2c6', nombre:'YNP', ruta: 'antiguo-sepdavi', icono:'saved_search', orden:'55'
+}];
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('sys_menu', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

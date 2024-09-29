@@ -1,0 +1,32 @@
+'use strict';
+
+const tableName = 'denuncia';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.numero_caso_mjti) {
+          await queryInterface.addColumn(tableName, 'numero_caso_mjti', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'numero_caso_mjti',
+            field        : 'numero_caso_mjti'
+          });
+        }
+
+        if (!tableDefinition.nombre_juez) {
+          await queryInterface.addColumn(tableName, 'nombre_juez', {
+            type         : Sequelize.STRING(500),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'nombre_juez',
+            field        : 'nombre_juez'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};

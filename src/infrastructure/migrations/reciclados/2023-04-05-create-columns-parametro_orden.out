@@ -1,0 +1,21 @@
+'use strict';
+
+const tableName = 'sys_parametro';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.orden) {
+          await queryInterface.addColumn(tableName, 'orden', {
+            type         : Sequelize.INTEGER,
+            allowNull    : false,
+            defaultValue : 0,
+            xlabel       : 'orden',
+            field        : 'orden'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

@@ -1,0 +1,17 @@
+'use strict';
+
+const { PARAMETRO } = require('./jsonParams/pamas1.js');
+const { v4: uuidv4 } = require('uuid');
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      const items = [];
+      for (let z = 0; z < PARAMETRO.length; z++) {
+        let elm = PARAMETRO[z];
+        elm.id = uuidv4();
+        items.push({...elm});
+      }
+      await queryInterface.bulkInsert('sys_parametro', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

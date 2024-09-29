@@ -1,0 +1,37 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+const { ABOGADOS } = require('./jsonYnp/ABOGADOS.js');
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      let items = [];
+      for (let z = 0; z < ABOGADOS.length; z++) {
+        const elm = ABOGADOS[z];
+        const sbtr = (elm.created_at + '').substring(0,10);
+        if ( elm.Anio != '2023' && sbtr != '2023' ) {
+          const id = uuidv4();
+          const idYnp = elm.id;
+          const estadoYpn = elm.estado;
+          delete elm.id;
+          delete elm.delitoObservaciones;
+          delete elm.estado;
+          delete elm.user_id;
+          items.push({
+            ...elm,
+            idYnp,
+            id,
+            estadoYpn
+          });
+        }
+      }
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('ynp_information', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

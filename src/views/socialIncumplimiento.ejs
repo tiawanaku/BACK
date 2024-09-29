@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table,
+    th,
+    td {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="text-center">FORMULARIO DE INCUMPLIMIENTO</h3>
+    <h3 class="text-center">CASO: "<%= denuncia.correlativoGamea %>"</h3>
+    <h3 class="text-center">Fecha de Registro: <%= denuncia.fechaIngreso %></h3>
+    <p class="justify">La ley N° 464, en su artículo 13 N° 3 establece que "La víctima no debe contar con 
+      recursos económicos necesarios para canalizar el proceso penal a travéz de un patrocinio particular" o en art.16 N°4.
+    </p>
+    <p class="justify">Al momento de la evaluación Socio-económico, se evidencio que: el Sra(a) <%= victima.nombreCompleto %>, 
+     con domicilio en <%= victima.direccion %> con <%= victima.tipoDocumento?.nombre %> <%= victima.numeroDocumento %>, cuenta con los recursos económicos necesarios,
+     tal cual se evidencia en informe por tal motivo el usuario no cumple con los requisitos para el acceso al Servicio del Patrocinio Legal.</p>
+    <br><br><br><br><br><br>
+    <div class="text-center text-sm">
+      <hr width="300px">
+      <br>
+      <p><%= victima.nombreCompleto %></p>
+      <p><%= victima.numeroDocumento %></p>
+    </div>
+  </div>
+</body>
+
+</html>

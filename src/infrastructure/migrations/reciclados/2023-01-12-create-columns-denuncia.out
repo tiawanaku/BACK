@@ -1,0 +1,51 @@
+'use strict';
+
+const tableName = 'denuncia';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.caso_concluido) {
+          await queryInterface.addColumn(tableName, 'caso_concluido', {
+            type         : Sequelize.BOOLEAN,
+            allowNull    : false,
+            defaultValue : false,
+            xlabel       : 'casoConcluido',
+            field        : 'caso_concluido'
+          });
+        }
+
+        if (!tableDefinition.justificacion_caso_concluido) {
+          await queryInterface.addColumn(tableName, 'justificacion_caso_concluido', {
+            type         : Sequelize.TEXT,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'justificacionCasoConcluido',
+            field        : 'justificacion_caso_concluido'
+          });
+        }
+
+        if (!tableDefinition.id_tipo_conclusion) {
+          await queryInterface.addColumn(tableName, 'id_tipo_conclusion', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idTipoConclusion',
+            field        : 'id_tipo_conclusion'
+          });
+        }
+
+        if (!tableDefinition.fecha_conclusion) {
+          await queryInterface.addColumn(tableName, 'fecha_conclusion', {
+            type         : Sequelize.DATE,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'fechaConclusion',
+            field        : 'fecha_conclusion'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

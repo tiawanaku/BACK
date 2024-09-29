@@ -1,0 +1,59 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      celdaCodigo : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.celdaCodigo'),
+        field     : 'celda_codigo'
+      },
+      celdaFecha : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.celdaFecha'),
+        field     : 'celda_fecha'
+      },
+      celdaVersion : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.celdaVersion'),
+        field     : 'celda_version'
+      },
+      celdaDescripcion : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.celdaDescripcion'),
+        field     : 'celda_descripcion'
+      },
+      titulo : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.titulo'),
+        field     : 'titulo'
+      },
+      tipo: {
+        type         : Sequelize.DataTypes.ENUM,
+        values       : ['FORMULARIO'],
+        allowNull    : false,
+        defaultValue : 'FORMULARIO',
+        xlabel       : lang.t('fields.tipo'),
+        field        : 'tipo'
+      }
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('social_header', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'social_header'
+    });
+  }
+};

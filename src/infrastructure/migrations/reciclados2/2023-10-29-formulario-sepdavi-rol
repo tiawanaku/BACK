@@ -1,0 +1,23 @@
+'use strict';
+
+const { formulario } = require('./formularioSepdavi/formulario_sepdavi.js');
+const { v4: uuidv4 } = require('uuid');
+
+let items = [];
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      await queryInterface.sequelize.query(
+        `DELETE FROM formulario_sepdavi;`
+      );
+
+      for (let z = 0; z < formulario.length; z++) {
+        const elm = formulario[z];
+        elm.id = uuidv4();
+        items.push({...elm});
+      }
+
+      await queryInterface.bulkInsert('formulario_sepdavi', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

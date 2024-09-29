@@ -1,0 +1,62 @@
+'use strict';
+
+const tableName = 'participante';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+
+        await queryInterface.changeColumn(tableName, 'fecha_orientacion', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaOrientacion'),
+            field        : 'fecha_orientacion'
+        });
+
+        await queryInterface.changeColumn(tableName, 'fecha_evaluacion', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaEvaluacion'),
+            field        : 'fecha_evaluacion'
+        });
+
+        await queryInterface.changeColumn(tableName, 'fecha_terapeutico', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaTerapeutico'),
+            field        : 'fecha_terapeutico'
+        });
+
+        await queryInterface.changeColumn(tableName, 'fecha_actividad', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaActividad'),
+            field        : 'fecha_actividad'
+        });
+
+        await queryInterface.changeColumn(tableName, 'fecha_contencion', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaContencion'),
+            field        : 'fecha_contencion'
+        });
+
+        await queryInterface.changeColumn(tableName, 'fecha_Acompanamiento', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaAcompanamiento'),
+            field        : 'fecha_Acompanamiento'
+        });
+
+        return Promise.resolve();
+      });
+  }
+};

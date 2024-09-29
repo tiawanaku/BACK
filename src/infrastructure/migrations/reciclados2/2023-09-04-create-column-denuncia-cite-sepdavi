@@ -1,0 +1,24 @@
+'use strict';
+
+const tableName = 'denuncia';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+
+        if (!tableDefinition.correlativo_sepdavi) {
+          await queryInterface.addColumn(tableName, 'correlativo_sepdavi', {
+            type         : Sequelize.TEXT,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'correlativoSepdavi',
+            field        : 'correlativo_sepdavi'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};

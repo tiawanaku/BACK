@@ -1,0 +1,21 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+let items = [{
+  'id_rol': 'b0092e8c-8dd7-4339-ac5f-d98eec34c58e',
+  'id_formulario': 'd49de3ba-95c1-4010-8de4-9252ea8daf54'
+}];
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('orientacion_header', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

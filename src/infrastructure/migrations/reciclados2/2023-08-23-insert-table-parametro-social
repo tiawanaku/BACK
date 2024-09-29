@@ -1,0 +1,279 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+// Datos de producción
+let items = [
+	{
+		"id" : "16de56fb-d424-4ef3-81e7-f58df4e84889",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "TFS",
+		"otros" : null,
+		"nombre" : "UNIPERSONAL"
+	},
+	{
+		"id" : "64e5d753-8273-4eec-bbf9-9da0faa0d64d",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "REC",
+		"otros" : null,
+		"nombre" : "RECONSTITUIDA"
+	},
+	{
+		"id" : "376e8fb6-1091-4e0a-8180-e716d21b1312",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "AM",
+		"otros" : null,
+		"nombre" : "AMPLIADA"
+	},
+	{
+		"id" : "7824590b-e562-4584-9807-8adb7fcc82e2",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "SF",
+		"otros" : null,
+		"nombre" : "SIN FAMILIA"
+	},
+	{
+		"id" : "a15a4f75-79db-43e7-89c2-0dfe9c6a5b56",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "MP",
+		"otros" : null,
+		"nombre" : "MONOPARENTAL"
+	},
+	{
+		"id" : "bb97df44-6f51-4fc6-834f-5bb0590f7630",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "NC",
+		"otros" : null,
+		"nombre" : "NUCLEAR"
+	},
+	{
+		"id" : "9d0fe0ab-a660-4de1-b683-3ef0452a806e",
+		"id_padre" : null,
+		"grupo" : "TIPOLOGIA_FAMILIAR_SEPDAVI",
+		"codigo" : "DS",
+		"otros" : null,
+		"nombre" : "DESINTEGRADA"
+	},
+	{
+		"id" : "c655c997-1a41-40e0-9116-e09898166bdc",
+		"id_padre" : null,
+		"grupo" : "TIPO_VIVIENDA_SEPDAVI",
+		"codigo" : "PR",
+		"otros" : null,
+		"nombre" : "PROPIA"
+	},
+	{
+		"id" : "abe098c3-2a30-4101-af74-3746e322b176",
+		"id_padre" : null,
+		"grupo" : "TIPO_VIVIENDA_SEPDAVI",
+		"codigo" : "AT",
+		"otros" : null,
+		"nombre" : "ANTICRÉTICO"
+	},
+	{
+		"id" : "72a4e795-ed32-4669-941a-789d9b4127af",
+		"id_padre" : null,
+		"grupo" : "TIPO_VIVIENDA_SEPDAVI",
+		"codigo" : "AL",
+		"otros" : null,
+		"nombre" : "ALQUILER"
+	},
+	{
+		"id" : "e30023fb-6d55-4ccb-bf0d-e4ffa84bbf61",
+		"id_padre" : null,
+		"grupo" : "TIPO_VIVIENDA_SEPDAVI",
+		"codigo" : "CD",
+		"otros" : null,
+		"nombre" : "CEDIDA"
+	},
+	{
+		"id" : "88617f72-ea60-4df8-909d-f796107907dd",
+		"id_padre" : null,
+		"grupo" : "TIPO_VIVIENDA_SEPDAVI",
+		"codigo" : "OT",
+		"otros" : null,
+		"nombre" : "OTROS"
+	},
+	{
+		"id" : "b0331ca4-c434-44cf-88bb-cd55d2588232",
+		"id_padre" : null,
+		"grupo" : "MONEDA_SEPDAVI",
+		"codigo" : "BS",
+		"otros" : null,
+		"nombre" : "BOLIVIANOS"
+	},
+	{
+		"id" : "80602e0c-4604-4851-a716-4e3ae90b80bf",
+		"id_padre" : null,
+		"grupo" : "MONEDA_SEPDAVI",
+		"codigo" : "SUS",
+		"otros" : null,
+		"nombre" : "DÓLARES"
+	},
+	{
+		"id" : "4d7be233-2307-4c12-9bf7-5f3318b8f264",
+		"id_padre" : null,
+		"grupo" : "SERVICIO_BASICO_SEPDAVI",
+		"codigo" : "LZ",
+		"otros" : null,
+		"nombre" : "LUZ"
+	},
+	{
+		"id" : "9382700f-9dfc-4883-9643-4c7e53ba7566",
+		"id_padre" : null,
+		"grupo" : "SERVICIO_BASICO_SEPDAVI",
+		"codigo" : "AG",
+		"otros" : null,
+		"nombre" : "AGUA"
+	},
+	{
+		"id" : "755ede4f-667d-40e9-b984-0bc4e82f7bdc",
+		"id_padre" : null,
+		"grupo" : "SERVICIO_BASICO_SEPDAVI",
+		"codigo" : "ALC",
+		"otros" : null,
+		"nombre" : "ALCANTARILLADO"
+	},
+	{
+		"id" : "bf5e06dc-b4da-43ea-af92-e6317df86626",
+		"id_padre" : null,
+		"grupo" : "SERVICIO_BASICO_SEPDAVI",
+		"codigo" : "TL",
+		"otros" : null,
+		"nombre" : "TELÉFONO"
+	},
+	{
+		"id" : "67685b9e-db65-4b29-9aa1-a49f046f9979",
+		"id_padre" : null,
+		"grupo" : "SERVICIO_BASICO_SEPDAVI",
+		"codigo" : "GS",
+		"otros" : null,
+		"nombre" : "GAS DOMICILIARIO"
+	},
+	{
+		"id" : "9bd7c93a-f750-441e-bea8-447a3e2f3322",
+		"id_padre" : null,
+		"grupo" : "USO_HABITACION_SEPDAVI",
+		"codigo" : "ML",
+		"otros" : null,
+		"nombre" : "MULTIPLE"
+	},
+	{
+		"id" : "9b4b2050-eba8-4d5f-b0a0-59db5231bb43",
+		"id_padre" : null,
+		"grupo" : "USO_HABITACION_SEPDAVI",
+		"codigo" : "DR",
+		"otros" : null,
+		"nombre" : "DORMITORIO"
+	},
+	{
+		"id" : "85823630-d2ce-4220-8a9b-23a761ebfe4c",
+		"id_padre" : null,
+		"grupo" : "USO_HABITACION_SEPDAVI",
+		"codigo" : "DP",
+		"otros" : null,
+		"nombre" : "DEPARTAMENTO"
+	},
+	{
+		"id" : "56ccbcc0-05ab-45bb-928a-644e255a3fd5",
+		"id_padre" : null,
+		"grupo" : "USO_HABITACION_SEPDAVI",
+		"codigo" : "GR",
+		"otros" : null,
+		"nombre" : "GARZONIER"
+	},
+	{
+		"id" : "7e732269-d062-45b3-aedf-80c8735b6bbc",
+		"id_padre" : null,
+		"grupo" : "USO_HABITACION_SEPDAVI",
+		"codigo" : "CS",
+		"otros" : null,
+		"nombre" : "CASA"
+	},
+	{
+		"id" : "3ede8da9-d71b-4084-aeeb-e506f5fca234",
+		"id_padre" : null,
+		"grupo" : "ATENCION_SALUD_SEPDAVI",
+		"codigo" : "SP",
+		"otros" : null,
+		"nombre" : "SERVICIO PÚBLICO"
+	},
+	{
+		"id" : "a230e270-5b04-4ffd-a644-f6199450301b",
+		"id_padre" : null,
+		"grupo" : "ATENCION_SALUD_SEPDAVI",
+		"codigo" : "SP",
+		"otros" : null,
+		"nombre" : "SERVICIO PRIVADO"
+	},
+	{
+		"id" : "02e612d7-57eb-4b5a-b31d-a33a31c64c31",
+		"id_padre" : null,
+		"grupo" : "ATENCION_SALUD_SEPDAVI",
+		"codigo" : "NT",
+		"otros" : null,
+		"nombre" : "NATURISTA"
+	},
+	{
+		"id" : "0374e83c-90de-46a6-9f2d-373186341bfe",
+		"id_padre" : null,
+		"grupo" : "ATENCION_SALUD_SEPDAVI",
+		"codigo" : "MT",
+		"otros" : null,
+		"nombre" : "MEDICINA TRADICIONAL"
+	},
+	{
+		"id" : "ca719315-39e2-42f3-84e1-53b4828e5ee2",
+		"id_padre" : null,
+		"grupo" : "ANTECEDENTES_JUDICIALES_SEPDAVI",
+		"codigo" : "FS",
+		"otros" : null,
+		"nombre" : "FISCALIA"
+	},
+	{
+		"id" : "f091b4ca-22c0-4b82-8ab2-755d295b6d4d",
+		"id_padre" : null,
+		"grupo" : "ANTECEDENTES_JUDICIALES_SEPDAVI",
+		"codigo" : "JZ",
+		"otros" : null,
+		"nombre" : "JUZGADO"
+	},
+	{
+		"id" : "27d09dc4-415b-4851-8909-0eb8643801be",
+		"id_padre" : null,
+		"grupo" : "ANTECEDENTES_JUDICIALES_SEPDAVI",
+		"codigo" : "FELCC",
+		"otros" : null,
+		"nombre" : "FELCC"
+	},
+	{
+		"id" : "861ea288-8911-4f1a-a263-986e88ad6886",
+		"id_padre" : null,
+		"grupo" : "ANTECEDENTES_JUDICIALES_SEPDAVI",
+		"codigo" : "FELCV",
+		"otros" : null,
+		"nombre" : "FELCV"
+	}
+];
+
+items = setTimestampsSeeder(items);
+
+module.exports = {
+    up (queryInterface, Sequelize) {
+      return queryInterface.bulkInsert('sys_parametro', items, {})
+        .then(async () => {})
+        .catch(error => {
+          if (error.message.indexOf('already exists') > -1) return;
+          console.error(error);
+        });
+    },
+    down (queryInterface, Sequelize) {}
+};

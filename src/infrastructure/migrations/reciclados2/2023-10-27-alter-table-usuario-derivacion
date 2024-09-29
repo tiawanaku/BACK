@@ -1,0 +1,23 @@
+'use strict';
+
+const tableName = 'sys_usuario';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.tipo) {
+          await queryInterface.addColumn(tableName, 'nivel', {
+            type         : Sequelize.DataTypes.ENUM,
+            values       : ['ALTO', 'MEDIO', 'BAJO'],
+            allowNull    : false,
+            defaultValue : 'MEDIO',
+            xlabel       : lang.t('fields.nivel'),
+            field        : 'nivel'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

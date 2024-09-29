@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table,
+    th,
+    td {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="text-center">FORMULARIO DE INASISTENCIA</h3>
+    <h3 class="text-center">CASO: "<%= denuncia.correlativoGamea %>"</h3>
+    <h3 class="text-center">Fecha de Registro: <%= denuncia.fechaIngreso %></h3>
+    <p class="justify">Toda vez que el Sr(a) <%= victima.nombreCompleto %>, con <%= victima.tipoDocumento?.nombre %> <%= victima.numeroDocumento %>, fue citado(a)
+     en fecha <%= denuncia.fechaCitacion %> para que se realice la Visita de su Domicilio por el área de Trabajo Social para la evaluación Socio-económica en fecha a horas,
+     tal cual consta en el FORMULARIO DE CITACIÓN de caso N° "<%= denuncia.correlativoGamea %>" y toda vez que no se hizo presente, ni justificó su inasistencia a dicha citación.</p>
+    <p class="justify">De conformidad al Artículo 13 numeral 3), y el Artículo 15 numeral 9) se tiene por rechazo el Patrocinio Legal futuro
+     que debia brindar el Servicio Plurinacional de Asistencia a la Víctima.
+    </p>
+    <br><br><br><br><br><br>
+    <div class="text-center text-sm">
+      <hr width="300px">
+      <br>
+      <p><%= victima.nombreCompleto %></p>
+      <p><%= victima.numeroDocumento %></p>
+    </div>
+  </div>
+</body>
+
+</html>

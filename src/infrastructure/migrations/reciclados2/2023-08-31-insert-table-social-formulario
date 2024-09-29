@@ -1,0 +1,33 @@
+'use strict';
+
+const tableName = 'denuncia';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.fecha_citacion) {
+          await queryInterface.addColumn(tableName, 'fecha_citacion', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.fechaCitacion'),
+            field        : 'fecha_citacion'
+          });
+        }
+
+        if (!tableDefinition.hora_citacion) {
+          await queryInterface.addColumn(tableName, 'hora_citacion', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.horaCitacion'),
+            field        : 'hora_citacion'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};

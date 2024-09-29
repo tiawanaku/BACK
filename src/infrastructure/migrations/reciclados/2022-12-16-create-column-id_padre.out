@@ -1,0 +1,21 @@
+'use strict';
+
+const tableName = 'sys_parametro';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.id_padre) {
+          await queryInterface.addColumn(tableName, 'id_padre', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idPadre',
+            field        : 'id_padre'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

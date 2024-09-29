@@ -1,0 +1,23 @@
+'use strict';
+
+const tableName = 'historial';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.tipo) {
+          await queryInterface.addColumn(tableName, 'tipo', {
+            type         : Sequelize.DataTypes.ENUM,
+            values       : ['ABOGADO', 'ORIENTACION', 'SOCIAL', 'PSICOLOGIA'],
+            allowNull    : false,
+            defaultValue : 'ABOGADO',
+            xlabel       : lang.t('fields.tipo'),
+            field        : 'tipo'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

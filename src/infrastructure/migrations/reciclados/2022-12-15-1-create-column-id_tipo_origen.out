@@ -1,0 +1,21 @@
+'use strict';
+
+const tableName = 'denuncia';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.id_tipo_origen) {
+          await queryInterface.addColumn(tableName, 'id_tipo_origen', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idTipoOrigen',
+            field        : 'id_tipo_origen'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

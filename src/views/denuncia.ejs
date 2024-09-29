@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border: solid 1px black;
+      padding: 10px;
+
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+  </style>
+</head>
+
+<body>
+  <img src=<%= imagen %> alt="" class="center" />
+  <table>
+    <tbody>
+      <tr>
+        <span style="position: absolute;margin-top: 12px;margin-left: 12px;" class="text-bold text-sm"><%= denuncia.codigoDenuncia %></span>
+        <td colspan="4" class=" text-center text-bold">
+          <span class="text-center text-sm"> CASO: <%= denuncia.correlativoGamea %></span>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center text-bold text-sm">DATOS DEL PROCESO</td>
+        <td> <span class="text-md"><%= denuncia.fiscal %></span></td>
+        <td class="text-center text-bold text-sm" colspan="2">
+          <span class="text-bold">JUZGADO </span>
+          <%= denuncia.juzgado %>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center text-bold text-sm">PARTES: </td>
+        <td>
+          <p class="text-bold text-sm">DENUNCIANTE(S):
+            <% denunciantes.forEach((denunciante,index) => {%>
+              <li class="text-sm"><%= denunciante.nombreCompleto %></li>
+            <% });%>
+          </p>
+        </td>
+        <td>
+          <p class="text-bold text-sm">DENUNCIADO(S):
+            <% denunciados.forEach((denunciante,index) => {%>
+              <li class="text-sm"><%= denunciante.nombreCompleto %></li>
+            <% });%>
+          </p>
+        </td>
+        <td>
+          <p class="text-bold text-sm">VICTIMA(S):
+            <% victimas.forEach((denunciante,index) => {%>
+              <li class="text-sm"><%= denunciante.nombreCompleto %></li>
+            <% });%>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center text-bold text-sm">DELITOS: </td>
+        <td colspan="3">
+          <% denuncia.delitos.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center text-bold text-sm">ESTADO ACTUAL: </td>
+        <td colspan="3">
+          <% denuncia.seguimiento.forEach((seguimiento,index) => {%>
+            <li>
+              <%if (seguimiento.estadoDenuncia === seguimiento.etapaDenuncia) { %>
+                <p class="text-sm"><%= seguimiento.estadoDenuncia %> - <%= seguimiento.fechaActuacion %></p>
+              <% } else { %>
+                <p class="text-sm"><%= seguimiento.estadoDenuncia %> - <%= seguimiento.etapaDenuncia %> - <%= seguimiento.fechaActuacion %></p>
+              <% } %>
+              <p class="text-sm"><%= seguimiento.actuacion %></p>
+            </li>
+          <% });%>
+        </td>
+      </tr>
+      <!-- <% if (denuncia?.bienesCautelados?.length > 0) { %>
+      <tr>
+        <td class="text-center text-bold">BIENES CAUTELADOS: </td>
+        <td colspan="3">
+          <% denuncia.bienesCautelados.forEach((bienCautelado,index) => {%>
+            <li>
+              <p class="text-md"><%= bienCautelado.tipoBien.nombre %></p>
+              <p class="text-md"><%= bienCautelado.descripcion %></p>
+            </li>
+          <% });%>
+        </td>
+      </tr>
+      <% } %>
+     <tr>
+        <td class="text-center text-bold">ACCIONES A SEGUIR: </td>
+        <td colspan="3"></td>
+      </tr> -->
+    </tbody>
+  </table>
+</body>
+
+</html>

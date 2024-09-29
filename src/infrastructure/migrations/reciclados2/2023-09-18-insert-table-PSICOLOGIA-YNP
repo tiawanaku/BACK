@@ -1,0 +1,33 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+const { PSICOLOGIAS } = require('./jsonYnp/PSICOLOGIA.js');
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      let items = [];
+      for (let z = 0; z < PSICOLOGIAS.length; z++) {
+        const elm = PSICOLOGIAS[z];
+        const sbtr = (elm.created_at + '').substring(0,10);
+        if ( elm.Anio != '2023' && sbtr != '2023' ) {
+          const id = uuidv4();
+          const idYnp = elm.id;
+          delete elm.id;
+          delete elm.user_id;
+          items.push({
+            ...elm,
+            idYnp,
+            id
+          });
+        }
+      }
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('ynp_psicologia', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

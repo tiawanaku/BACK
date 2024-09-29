@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      padding: 8px;
+    }
+
+    .line {
+      border-bottom: solid 1px black;
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 6px;
+    }
+
+    .text-sm-declaraciones {
+      font-size: 8px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <table class="line">
+    <tbody>
+      <tr style="height:50px">
+        <td rowspan="3" width="150px">
+          <img src=<%= imagen %> alt="" class="size-img" />
+        </td>
+        <td class="text-bold text-center text-sm" style="font-size: 10px;">Registro:</td>
+        <td class="text-bold text-sm" width="150px" style="font-size: 8px;"> <%= header.celdaCodigo %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm text-center" rowspan="2" style="font-size: 15px;"> <h3><%= header.celdaDescripcion %></h3> </td>
+        <td class="text-bold text-sm" style="font-size: 8px;"> <%= header.celdaFecha %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm" style="font-size: 8px;"> <%= header.celdaVersion %> </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-center" style="font-size: 10px;">CASO: <%= denuncia.correlativoGamea %> </td>
+      </tr>
+      <% if (denuncia.codigoDenuncia) { %>
+      <tr>
+        <td class="text-center" style="font-size: 10px;">CÓDIGO FISCALÍA: <%= denuncia.codigoDenuncia %> </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="11" colspan="10"><strong>1.- DATOS DE LA VÍCTIMA:</strong></td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm">NOMBRE(S) Y APELLIDO(S)</td>
+        <td class="text-center text-sm">C.I.</td>
+        <td class="text-center text-sm">TELÉFONO-CELULAR</td>
+        <td class="text-center text-sm">EDAD</td>
+        <!--<td class="text-center text-sm">OCUPACIÓN</td>-->
+        <!--<td class="text-center text-sm">DIRECCIÓN DOM.</td>-->
+        <!--<td class="text-center text-sm">DIRECCIÓN LAB.</td>-->
+        <td class="text-center text-sm">ESTADO CIVIL</td>
+        <td class="text-center text-sm">GRADO DE INSTRUCCIÓN</td>
+        <td class="text-center text-sm">SEXO</td>
+      </tr>
+      <% victimas.forEach((victima,index) => {%>
+        <tr>
+          <td class="text-sm"><%= victima.nombreCompleto %></td>
+          <td class="text-sm"><%= victima.numeroDocumento %></td>
+          <td class="text-sm"><%= victima.telefono %></td>
+          <td class="text-sm"><%= victima.edad %></td>
+          <!--<td class="text-sm"><%= victima.ocupacion %></td>-->
+          <!--<td class="text-sm"><%= victima.direccion %></td>-->
+          <!--<td class="text-sm"><%= victima.direccionLaboral %></td>-->
+          <td class="text-sm"><%= victima.estadoCivil?.nombre %></td>
+          <td class="text-sm"><%= victima.gradoInstruccion?.nombre %></td>
+          <td class="text-sm"><%= victima.genero?.nombre %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" width="150px"><strong>2.- TIPOLOGÍA FAMILIAR:</strong> <%= denuncia.tipologiaFamiliar ? denuncia.tipologiaFamiliar.nombre : null %></td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="5"><strong>3.- SITUACIÓN ECONÓMICA:</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center">MIEMBRO RESPONSABLE DE LA FAMILIA</td>
+        <td class="text-sm text-center">INGRESO MENSUAL DEL BENEFICIARIO O USUARIO</td>
+        <td class="text-sm text-center">EGRESO MENSUAL DEL BENEFICIARIO O USUARIO</td>
+        <td class="text-sm text-center">INGRESO MENSUAL DEL RESPONSABLE</td>
+        <td class="text-sm text-center">EGRESO MENSUAL DEL RESPONSABLE</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= denuncia.miembroResponsable?.nombre %></td>
+        <td class="text-sm"><%= denuncia.ingresoMensualBeneficiario %></td>
+        <td class="text-sm"><%= denuncia.egresoMensualBeneficiario %></td>
+        <td class="text-sm"><%= denuncia.ingresoMensualResponsable %></td>
+        <td class="text-sm"><%= denuncia.egresoMensualResponsable %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="2"><strong>4.- CONDICIONES DE HABITABILIDAD:</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm" width="150px">TENENCIA DE LA VIVIENDA</td>
+        <td class="text-sm">
+          <ul>
+            <% tipovivienda.forEach((tv,index) => {%>
+              <li><%= tv.nombre %></li>
+            <% });%>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-sm" colspan="2">MONTO DE ALQUILER O ANTICRÉTICO: <%= denuncia.montoVivienda %> <%= denuncia.divisa ? denuncia.divisa.nombre : null %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">SERVICIOS BÁSICOS</td>
+        <td class="text-sm">
+          <ul>
+            <% servicioBasico.forEach((sb,index) => {%>
+              <li><%= sb.nombre %></li>
+            <% });%>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-sm" colspan="2">TIPO DE VIVIENDA: <%= denuncia.usoHabitacion ? denuncia.usoHabitacion.nombre : null %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" width="150px"><strong>5.- DATOS DE SALUD:</strong> <%= denuncia.saludAtencion ? denuncia.saludAtencion.nombre : null %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" width="150px"><strong>6.- ANTECEDENTES JUDICIALES:</strong> <%= denuncia.antedecentesJudiciales ? denuncia.antedecentesJudiciales.nombre : null %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" width="150px"><strong>7.- RELACIÓN DE HECHOS:</strong></td>
+        <td class="text-sm-declaraciones"><%= denuncia.relacionHecho %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" width="150px"><strong>8.- TIPOLOGÍA(S):</strong></td>
+        <td class="text-sm-declaraciones">
+          <ul>
+            <% denuncia.delitos.forEach((delito,index) => {%>
+              <li><%= delito.nombre %></li>
+            <% });%>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="line">
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="9"><strong>9.- GRUPO FAMILIAR:</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center">NOMBRES Y APELLIDOS</td>
+        <td class="text-sm text-center">PARENTESCO</td>
+        <td class="text-sm text-center">EDAD</td>
+        <td class="text-sm text-center">SEXO</td>
+        <td class="text-sm text-center">GRADO INSTRUCCIÓN</td>
+        <td class="text-sm text-center">OCUPACIÓN</td>
+      </tr>
+      <% grupoFamiliar.forEach((gf,index) => {%>
+        <tr>
+          <td class="text-sm"><%= gf.nombreCompleto %></td>
+          <td class="text-sm"><%= gf.parentesco %></td>
+          <td class="text-sm"><%= gf.edad %></td>
+          <td class="text-sm"><%= gf.sexo %></td>
+          <td class="text-sm"><%= gf.gradoInstruccion %></td>
+          <td class="text-sm"><%= gf.ocupacion %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <% victimas.forEach((victima,index) => {%>
+    <br>
+    <br>
+    <h3 class="justify text-sm-declaraciones">
+      YO <%= victima.nombreCompleto %> CON <%= victima.tipoDocumento?.nombre %> <%= victima.numeroDocumento %> Y  CÓDIGO DE REGISTRO NRO <%= denuncia.correlativoGamea %> DECLARO QUE LOS DATOS PROPORCIONADOS A LA ENTIDAD, EN CUANTO A VIVIENDA, CONDICIÓN ECONÓMICA Y FALTA DE PATROCINIO LEGAL PARTICULAR SON VERÍDICOS.
+    </h3>
+    <h3 class="justify text-sm-declaraciones">
+      EN CASO QUE MI PERSONA OTORGASE INFORMACIÓN FALSA SOBRE MI SITUACIÓN SOCIOECONÓMICA Y LEGAL, EL SERVICIO CESARÁ DE INMEDIATO Y ESTOY EN LA OBLIGACIÓN DE CANCELAR TODOS LOS GASTOS REALIZADOS POR ASESORÍA, PATROCINIO JURÍDICO, SOCIAL Y PSICOLÓGICO A LA ENTIDAD.
+    </h3>
+    <h3 class="justify text-sm-declaraciones">
+      POR OTRA PARTE ESTOY EN LA OBLIGACIÓN DE REALIZAR EL SEGUIMIENTO Y APERSONARME A LA OFICINA DE LA INSTITUCIÓN 3 A 5 DÍAS POSTERIORES A LA VISITA POR LA TRABAJADORA SOCIAL, ESTO CON EL OBJETO DE VERIFICAR LA ASIGNACIÓN DEL ABOGADO PATROCINANTE A MI CASO. ASIMISMO ME COMPROMETO A PARTICIPAR ACTIVAMENTE DEL PROCESO LEGAL Y RESPETAR A LAS AUTORIDADES Y DEMÁS PERSONAL ENCARGADO DE VELAR POR MI PROTECCIÓN.
+    </h3>
+    <div class="text-center text-sm-declaraciones">
+      <br><br><br><br><br>
+      <hr width="300px">
+      <h4><%= victima.nombreCompleto %></h4>
+      <h4><%= victima.numeroDocumento %></h4>
+    </div>
+  <% });%>
+</body>
+
+</html>

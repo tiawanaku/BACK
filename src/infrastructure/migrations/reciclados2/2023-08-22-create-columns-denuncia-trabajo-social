@@ -1,0 +1,123 @@
+'use strict';
+
+const tableName = 'denuncia';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.id_tipologia_familiar) {
+          await queryInterface.addColumn(tableName, 'id_tipologia_familiar', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idTipologiaFamiliar',
+            field        : 'id_tipologia_familiar'
+          });
+        }
+
+        if (!tableDefinition.id_miembro_responsable) {
+          await queryInterface.addColumn(tableName, 'id_miembro_responsable', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.idMiembroResponsable'),
+            field        : 'id_miembro_responsable'
+          });
+        }
+
+        if (!tableDefinition.ingreso_mensual_beneficiario) {
+          await queryInterface.addColumn(tableName, 'ingreso_mensual_beneficiario', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.ingresoMensualBeneficiario'),
+            field        : 'ingreso_mensual_beneficiario'
+          });
+        }
+
+        if (!tableDefinition.egreso_mensual_beneficiario) {
+          await queryInterface.addColumn(tableName, 'egreso_mensual_beneficiario', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.egresoMensualBeneficiario'),
+            field        : 'egreso_mensual_beneficiario'
+          });
+        }
+
+        if (!tableDefinition.ingreso_mensual_responsable) {
+          await queryInterface.addColumn(tableName, 'ingreso_mensual_responsable', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.ingresoMensualResponsable'),
+            field        : 'ingreso_mensual_responsable'
+          });
+        }
+
+        if (!tableDefinition.egreso_mensual_responsable) {
+          await queryInterface.addColumn(tableName, 'egreso_mensual_responsable', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.egresoMensualResponsable'),
+            field        : 'egreso_mensual_responsable'
+          });
+        }
+
+        if (!tableDefinition.monto_vivienda) {
+          await queryInterface.addColumn(tableName, 'monto_vivienda', {
+            type         : Sequelize.STRING(100),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : lang.t('fields.montoVivienda'),
+            field        : 'monto_vivienda'
+          });
+        }
+
+        if (!tableDefinition.id_divisa) {
+          await queryInterface.addColumn(tableName, 'id_divisa', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idDivisa',
+            field        : 'id_divisa'
+          });
+        }
+
+        if (!tableDefinition.id_uso_habitacion) {
+          await queryInterface.addColumn(tableName, 'id_uso_habitacion', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idUsoHabitacion',
+            field        : 'id_uso_habitacion'
+          });
+        }
+
+        if (!tableDefinition.id_salud_atencion) {
+          await queryInterface.addColumn(tableName, 'id_salud_atencion', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idSaludAtencion',
+            field        : 'id_salud_atencion'
+          });
+        }
+
+        if (!tableDefinition.id_antedecentes_judiciales) {
+          await queryInterface.addColumn(tableName, 'id_antedecentes_judiciales', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idAntedecentesJudiciales',
+            field        : 'id_antedecentes_judiciales'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};

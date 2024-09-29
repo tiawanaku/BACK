@@ -1,0 +1,263 @@
+'use strict';
+
+const tableName = 'participante';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    const tableDefinition = await queryInterface.describeTable(tableName);
+
+    if (!tableDefinition.id_delito_objecion) {
+      await queryInterface.addColumn(tableName, 'id_delito_objecion', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoObjecion',
+        field        : 'id_delito_objecion'
+      });
+    }
+
+    if (!tableDefinition.fecha_rechazo) {
+      await queryInterface.addColumn(tableName, 'fecha_rechazo', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaRechazo',
+        field        : 'fecha_rechazo'
+      });
+    }
+
+    if (!tableDefinition.numero_resolucion) {
+      await queryInterface.addColumn(tableName, 'numero_resolucion', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroResolucion',
+        field        : 'numero_resolucion'
+      });
+    }
+
+    if (!tableDefinition.id_delito_imputacion) {
+      await queryInterface.addColumn(tableName, 'id_delito_imputacion', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoImputacion',
+        field        : 'id_delito_imputacion'
+      });
+    }
+
+    if (!tableDefinition.fecha_medida_cautelar) {
+      await queryInterface.addColumn(tableName, 'fecha_medida_cautelar', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaMedidaCautelar',
+        field        : 'fecha_medida_cautelar'
+      });
+    }
+
+    if (!tableDefinition.meses_detencion) {
+      await queryInterface.addColumn(tableName, 'meses_detencion', {
+        type         : Sequelize.INTEGER,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'mesesDetencion',
+        field        : 'meses_detencion'
+      });
+    }
+
+    if (!tableDefinition.meses_ampliacion) {
+      await queryInterface.addColumn(tableName, 'meses_ampliacion', {
+        type         : Sequelize.INTEGER,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'mesesAmpliacion',
+        field        : 'meses_ampliacion'
+      });
+    }
+
+    if (!tableDefinition.fecha_imputacion) {
+      await queryInterface.addColumn(tableName, 'fecha_imputacion', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaImputacion',
+        field        : 'fecha_imputacion'
+      });
+    }
+
+    if (!tableDefinition.numero_imputacion) {
+      await queryInterface.addColumn(tableName, 'numero_imputacion', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroImputacion',
+        field        : 'numero_imputacion'
+      });
+    }
+
+    if (!tableDefinition.id_delito_con_impugnacion) {
+      await queryInterface.addColumn(tableName, 'id_delito_con_impugnacion', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoConImpugnacion',
+        field        : 'id_delito_con_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.fecha_con_impugnacion) {
+      await queryInterface.addColumn(tableName, 'fecha_con_impugnacion', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoConImpugnacion',
+        field        : 'fecha_con_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.numero_resolucion_con_impugnacion) {
+      await queryInterface.addColumn(tableName, 'numero_resolucion_con_impugnacion', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroResolucionConImpugnacion',
+        field        : 'numero_resolucion_con_impugnacion'
+      });
+    }
+
+    // SIN IMPUGNACION
+    if (!tableDefinition.id_delito_sin_impugnacion) {
+      await queryInterface.addColumn(tableName, 'id_delito_sin_impugnacion', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoSinImpugnacion',
+        field        : 'id_delito_sin_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.fecha_sin_impugnacion) {
+      await queryInterface.addColumn(tableName, 'fecha_sin_impugnacion', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoSinImpugnacion',
+        field        : 'fecha_sin_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.numero_resolucion_sin_impugnacion) {
+      await queryInterface.addColumn(tableName, 'numero_resolucion_sin_impugnacion', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroResolucionSinImpugnacion',
+        field        : 'numero_resolucion_sin_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.id_estado_impugnacion) {
+      await queryInterface.addColumn(tableName, 'id_estado_impugnacion', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idEstadoImpugnacion',
+        field        : 'id_estado_impugnacion'
+      });
+    }
+
+    if (!tableDefinition.sentencia_condenatoria) {
+      await queryInterface.addColumn(tableName, 'sentencia_condenatoria', {
+        type         : Sequelize.TEXT,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'sentenciaCondenatoria',
+        field        : 'sentencia_condenatoria'
+      });
+    }
+
+    if (!tableDefinition.sentencia_mixta) {
+      await queryInterface.addColumn(tableName, 'sentencia_mixta', {
+        type         : Sequelize.TEXT,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'sentenciaMixta',
+        field        : 'sentencia_mixta'
+      });
+    }
+
+    // ACUSACION
+    if (!tableDefinition.fecha_acusacion) {
+      await queryInterface.addColumn(tableName, 'fecha_acusacion', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaAcusacion',
+        field        : 'fecha_acusacion'
+      });
+    }
+
+    if (!tableDefinition.numero_acusacion) {
+      await queryInterface.addColumn(tableName, 'numero_acusacion', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroAcusacion',
+        field        : 'numero_acusacion'
+      });
+    }
+
+    // JUICIO ORAL
+    if (!tableDefinition.id_acto_preparatorio) {
+      await queryInterface.addColumn(tableName, 'id_acto_preparatorio', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idActoPreparatorio',
+        field        : 'id_acto_preparatorio'
+      });
+    }
+
+    if (!tableDefinition.fecha_juicio_oral) {
+      await queryInterface.addColumn(tableName, 'fecha_juicio_oral', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaJuicioOral',
+        field        : 'fecha_juicio_oral'
+      });
+    }
+
+    // SENTENCIA ABSOLUTORIA
+    if (!tableDefinition.id_delito_sentencia_absolutoria) {
+      await queryInterface.addColumn(tableName, 'id_delito_sentencia_absolutoria', {
+        type         : Sequelize.UUID,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'idDelitoSentenciaAbsolutoria',
+        field        : 'id_delito_sentencia_absolutoria'
+      });
+    }
+
+    if (!tableDefinition.fecha_sentencia_absolutoria) {
+      await queryInterface.addColumn(tableName, 'fecha_sentencia_absolutoria', {
+        type         : Sequelize.DATEONLY,
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'fechaSentenciaAbsolutoria',
+        field        : 'fecha_sentencia_absolutoria'
+      });
+    }
+
+    if (!tableDefinition.numero_sentencia) {
+      await queryInterface.addColumn(tableName, 'numero_sentencia', {
+        type         : Sequelize.STRING(100),
+        allowNull    : true,
+        defaultValue : null,
+        xlabel       : 'numeroSentencia',
+        field        : 'numero_sentencia'
+      });
+    }
+  }
+};

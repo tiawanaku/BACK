@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Certificado';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/Aspire.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'Dancing';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/Dancing.ttf') format('truetype')
+}

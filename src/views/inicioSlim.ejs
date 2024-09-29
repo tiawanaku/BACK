@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      padding: 8px;
+    }
+
+    .mi-tabla {
+      border-collapse: collapse;
+    }
+
+    table.mi-tabla .mi-tabla th, .mi-tabla td {
+      border: none;
+    }
+
+    .line {
+      border-bottom: solid 1px black;
+    }
+
+    .rightline {
+      border-right: solid 1px black;
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 6px;
+    }
+
+    .text-sm-declaraciones {
+      font-size: 8px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="4">
+          <table class="mi-tabla line">
+            <tbody>
+              <tr>
+                <td style="width: 150px;"><img width="150px" height="150px" src=<%= imagen %> alt="" class="size-img" /></td>
+                <td><h1 class="text-center">SERVICIOS LEGALES INTEGRALES MUNICIPALES DISTRITO REACCION  INMEDIATA PENAL (SLIM RIP) REGISTRO UNICO DE VIOLENCIA INTRAFAMILIAR (RUVI)</h1></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td class="text-sm" style="width: 150px;"><strong>TIPOLOGIA DE APERTURA DE CASO:</strong></td>
+        <td class="text-sm">
+          <% denuncia.delitos.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="4"><strong>1. DATOS DEL REGISTRO</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm" style="width: 150px;">FECHA:</td>
+        <td class="text-sm"><%= denuncia.fechaIngreso %></td>
+        <td class="text-sm" style="width: 150px;">No. De caso:</td>
+        <td class="text-sm"><%= denuncia.correlativoGamea %></td>
+      </tr>
+      <tr>
+        <td class="text-sm" style="width: 150px;">Zona o Urbanización:</td>
+        <td class="text-sm"><%= denuncia.zona?.nombre %></td>
+        <td class="text-sm" style="width: 150px;">SLIM:</td>
+        <td class="text-sm"><%= denuncia.slim?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm" style="width: 150px;">Nombre del servicio</td>
+        <td class="text-sm text-center" colspan="3">SLIM RIP</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="3"><strong>2. DATOS DE LA VICTIMA</strong></td>
+      </tr>
+      <% victimas.forEach((vc,index) => {%>
+      <tr>
+        <td class="text-sm" colspan="3">2.1 Identificación personal:</td>
+      </tr>
+      <tr>
+        <td class="text-sm" style="width: 200px;">Nombres:</td>
+        <td class="text-sm" colspan="2"><%= vc.nombreCompleto %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.2. Documento de Identidad</td>
+        <td class="text-sm" colspan="2"><%= vc.numeroDocumento %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.3. Sexo</td>
+        <td class="text-sm" colspan="2">2.4. Lugar de Nacimiento</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= vc.genero?.nombre %></td>
+        <td class="text-sm" colspan="2"><%= vc.nacimientoSlim?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.5. Fecha de nacimiento</td>
+        <td class="text-sm">2.6. Edad</td>
+        <td class="text-sm">2.7. Residencia habitual</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= vc.fechaNacimiento %></td>
+        <td class="text-sm"><%= vc.edad %></td>
+        <td class="text-sm"><%= vc.residenciaHabitual?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.8 Estado Civil</td>
+        <td class="text-sm" colspan="2">2.9 Relación de la victima con el  (la ) agresor (a)</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= vc.estadoCivil?.nombre %></td>
+        <td class="text-sm" colspan="2"><%= vc.relacionDenunciado?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.10 Hijos (a)</td>
+        <td class="text-sm">2.11 Logro Educativo</td>
+        <td class="text-sm">2.12 Condiciones de Actividad</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= vc.hijos %></td>
+        <td class="text-sm"><%= vc.gradoInstruccion?.nombre %></td>
+        <td class="text-sm"><%= vc.condicionesActividad?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.13 Ingreso Económico</td>
+        <td class="text-sm" colspan="2">2.14 Idiomas más hablados</td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= vc.ingresoEconomico?.nombre %></td>
+        <td class="text-sm" colspan="2"><%= vc.idiomaHablado?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">2.15 Domicilio:</td>
+        <td class="text-sm"><%= vc.zona %> <%= vc.calle %> <%= vc.numero %></td>
+      </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="7"><strong>3. DATOS DEL GRUPO FAMILIAR</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm">Nro</td>
+        <td class="text-sm text-center">Nombres y Apellidos</td>
+        <td class="text-sm text-center">Parentesco</td>
+        <td class="text-sm text-center">Edad</td>
+        <td class="text-sm text-center">Sexo</td>
+        <td class="text-sm text-center">G. Instrucción</td>
+        <td class="text-sm text-center">Ocupación </td>
+      </tr>
+      <% grupoFamiliar.forEach((gf,index) => {%>
+        <tr>
+          <td class="text-sm"><%= gf.nombreCompleto %></td>
+          <td class="text-sm"><%= gf.parentesco %></td>
+          <td class="text-sm"><%= gf.edad %></td>
+          <td class="text-sm"><%= gf.sexo %></td>
+          <td class="text-sm"><%= gf.gradoInstruccion %></td>
+          <td class="text-sm"><%= gf.ocupacion %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="3"><strong>3. DATOS DE LA DENUNCIA</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center">3.1. Forma de ingreso de la denuncia</td>
+        <td class="text-sm text-center">3.2. Denuncio este hecho con anterioridad a otra institución </td>
+      </tr>
+      <tr>
+        <td class="text-sm"><%= denuncia.FormaIngresoSlim?.nombre %></td>
+        <td class="text-sm"><%= denuncia.anterioridadOtraInstitucion %></td>
+      </tr>
+      <tr>
+        <td class="text-sm">3.3. Violencia Física</td>
+        <td class="text-sm">3.4. Violencia psicológica</td>
+      </tr>
+      <tr>
+        <td class="text-sm">
+          <% denuncia.violenciaFisica?.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+        <td class="text-sm">
+          <% denuncia.violenciaPsicologica?.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-sm">3.5. Violencia sexual</td>
+        <td class="text-sm" colspan="2">3.7 Delitos penales</td>
+      </tr>
+      <tr>
+        <td class="text-sm">
+          <% denuncia.violenciaSexual?.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+        <td class="text-sm" colspan="2">
+          <% denuncia.delitoPenalSlim?.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-sm" colspan="2">3.8. Lugar de agresión</td>
+      </tr>
+      <tr>
+        <td class="text-sm" colspan="2"><%= denuncia.lugarAgresion?.nombre %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="line">
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="3"><strong>4. DATOS DEL AGRESOR (A)</strong></td>
+      </tr>
+      <% denunciados.forEach((dd,index) => {%>
+        <tr>
+          <td class="text-sm" colspan="3">4.1 Identificación del (a)  agresor (a):</td>
+        </tr>
+        <tr>
+          <td class="text-sm">Nombres:</td>
+          <td class="text-sm" colspan="2"><%= dd.nombreCompleto %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.2. Documento de Identidad</td>
+          <td class="text-sm" colspan="2"><%= dd.numeroDocumento %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.3. Sexo</td>
+          <td class="text-sm" colspan="2">4.4. Lugar de Nacimiento</td>
+        </tr>
+        <tr>
+          <td class="text-sm"><%= dd.genero?.nombre %></td>
+          <td class="text-sm" colspan="2"><%= dd.nacimientoSlim?.nombre %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.5. Fecha de nacimiento</td>
+          <td class="text-sm">4.6. Edad</td>
+          <td class="text-sm">4.7. Residencia habitual</td>
+        </tr>
+        <tr>
+          <td class="text-sm"><%= vc.fechaNacimiento %></td>
+          <td class="text-sm"><%= vc.edad %></td>
+          <td class="text-sm"><%= vc.residenciaHabitual?.nombre %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.8 Estado Civil</td>
+          <td class="text-sm">4.9 Logro Educativo</td>
+          <td class="text-sm">4.10 Condiciones de actividad</td>
+        </tr>
+        <tr>
+          <td class="text-sm"><%= vc.estadoCivil?.nombre %></td>
+          <td class="text-sm"><%= vc.gradoInstruccion?.nombre %></td>
+          <td class="text-sm"><%= vc.condicionesActividad?.nombre %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.11 Ingreso Económico.</td>
+          <td class="text-sm" colspan="2">4.12 Idiomas más hablados</td>
+        </tr>
+        <tr>
+          <td class="text-sm"><%= vc.ingresoEconomico?.nombre %></td>
+          <td class="text-sm" colspan="2"><%= vc.idiomaHablado?.nombre %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">4.13 Dirección laboral:</td>
+          <td class="text-sm"><%= vc.direccionLaboral %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">2.15 Domicilio:</td>
+          <td class="text-sm"><%= vc.zona %> <%= vc.calle %> <%= vc.numero %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <!-- <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="3"><strong>5. ACCIONES INMEDIATAS A REALIZAR</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm">5.1 Orientación Legal</td>
+        <td class="text-sm">5.2 Asistencia psicológica</td>
+        <td class="text-sm">5.3 Asistencia social</td>
+      </tr>
+      <tr>
+        <td class="text-sm"></td>
+        <td class="text-sm"></td>
+        <td class="text-sm"></td>
+      </tr>
+      <tr>
+        <td class="text-sm">Otro especifique</td>
+        <td class="text-sm">Otro especifique</td>
+        <td class="text-sm">Otro especifique</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="3"><strong>6. ACCIONES COORDINADAS (REFERENCIAS)</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm"></td>
+      </tr>
+      <tr>
+        <td class="text-sm">Otro especifique</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="line">
+    <tbody>
+      <tr>
+        <td class="text-sm"><strong>7. TESTIMONIO DE LO SUCEDIDO</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm"></td>
+      </tr>
+      <tr>
+        <td class="text-sm"><strong>8. Requisitos presentados por la usuaria:</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm"></td>
+      </tr>
+    </tbody>
+  </table>-->
+  <br>
+  <br>
+  <table class="mi-tabla line">
+    <tbody>
+      <tr>
+        <td class="text-center text-sm-declaraciones">
+          <br>
+          <br>
+          <br>
+          <br>
+          <hr width="200px">
+          <h4><%= solicitante.nombreCompleto %></h4>
+          <h4><%= solicitante.numeroDocumento %></h4>
+        </td>
+        <td class="text-center text-sm-declaraciones">
+          <br>
+          <br>
+          <br>
+          <br>
+          <hr width="200px">
+          <h4><%= usuario.nombres %> <%= usuario.primerApellido %> <%= usuario.segundoApellido %></h4>
+          <h4><%= usuario.numeroDocumento %></h4>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

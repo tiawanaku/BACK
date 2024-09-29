@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border: solid 1px black;
+      padding: 10px;
+
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tbody>
+      <tr>
+        <td rowspan="3" width="150px">
+          <img src=<%= imagen %> alt="" class="size-img" />
+        </td>
+        <td class="text-bold text-center text-sm">Registro:</td>
+        <td class="text-bold text-sm" width="150px"> <%= header.celdaCodigo %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm text-center" rowspan="2"> <h3><%= header.celdaDescripcion %></h3> </td>
+        <td class="text-bold text-sm"> <%= header.celdaFecha %> </td>
+      </tr>
+      <tr>
+        <td class="text-bold text-sm"> <%= header.celdaVersion %> </td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-center text-sm text-bold" colspan="2"> <%= header.titulo %> </td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm text-bold" colspan="2">CASO: <%= denuncia.correlativoGamea %> </td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm text-bold" colspan="2">DATOS PERSONALES:</td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold" width="200">NOMBRE</td>
+        <td class="text-sm text-bold"><%= victima.nombreCompleto %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">TIPOLOGÍA(S)</td>
+        <td class="text-sm text-bold">
+          <% denuncia.delitos.forEach((delito,index) => {%>
+            <li class="text-sm"><%= delito.nombre %></li>
+          <% });%></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">EDAD</td>
+        <td class="text-sm text-bold"><%= victima.edadContencion?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">SEXO</td>
+        <td class="text-sm text-bold"><%= victima.genero?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">GRADO DE INSTRUCCIÓN</td>
+        <td class="text-sm text-bold"><%= victima.gradoInstruccion?.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">TELÉFONO</td>
+        <td class="text-sm text-bold"><%= victima.telefono %></td>
+      </tr>
+      <tr>
+        <td class="text-center text-sm text-bold" colspan="2">INTERVENCIÓN:</td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">ENFOQUE TERAPÉUTICO Y/O TÉCNICAS UTILIZADAS</td>
+        <td class="text-sm text-bold"><%= victima.enfoqueTerapia %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">NÚMERO DE INTERVENCIÓN</td>
+        <td class="text-sm text-bold"><%= victima.numeroIntervencionTerapeutico %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">FECHA</td>
+        <td class="text-sm text-bold"><%= victima.fechaTerapeutico %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">HORA DE INICIO</td>
+        <td class="text-sm text-bold"><%= victima.horaInicioTerapeutico %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">HORA DE FINALIZACIÓN</td>
+        <td class="text-sm text-bold"><%= victima.horaFinTerapeutico %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-bold">DESARROLLO</td>
+        <td class="text-sm text-bold"><%= victima.desarrolloTerapeutico %></td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br><br><br><br><br>
+  <div class="text-center">
+    <hr width="300px">
+    <h6><%= victima.nombreCompleto %></h6>
+    <h6><%= victima.numeroDocumento %></h6>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      idYnp : {
+        type      : Sequelize.DataTypes.INTEGER,
+        allowNull : false,
+        xlabel    : lang.t('fields.idYnp'),
+        field     : 'idYnp'
+      },
+      departamentoRegion: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.departamentoRegion'),
+        field     : 'departamentoRegion'
+      },
+      AsistenciaInicial: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.AsistenciaInicial'),
+        field     : 'AsistenciaInicial'
+      },
+      fechaInicioProceso: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.fechaInicioProceso'),
+        field     : 'fechaInicioProceso'
+      },
+      TipoAsistenciaComplementaria: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.TipoAsistenciaComplementaria'),
+        field     : 'TipoAsistenciaComplementaria'
+      },
+      nombreVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreVictima'),
+        field     : 'nombreVictima'
+      },
+      generoVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.generoVictima'),
+        field     : 'generoVictima'
+      },
+      numeroVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroVictima'),
+        field     : 'numeroVictima'
+      },
+      edadVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.edadVictima'),
+        field     : 'edadVictima'
+      },
+      nombreDenunciante: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreDenunciante'),
+        field     : 'nombreDenunciante'
+      },
+      numeroContactoDenunciante: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroContactoDenunciante'),
+        field     : 'numeroContactoDenunciante'
+      },
+      Anio: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.Anio'),
+        field     : 'Anio'
+      },
+      created_at: {
+        type      : Sequelize.DataTypes.DATE,
+        allowNull : true,
+        xlabel    : lang.t('fields.created_at'),
+        field     : 'created_at'
+      },
+      updated_at: {
+        type      : Sequelize.DataTypes.DATE,
+        allowNull : true,
+        xlabel    : lang.t('fields.updated_at'),
+        field     : 'updated_at'
+      },
+      rangoEtario: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.rangoEtario'),
+        field     : 'rangoEtario'
+      },
+      name: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.name'),
+        field     : 'name'
+      },
+      email: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.email'),
+        field     : 'email'
+      }
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('ynp_psicologia', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'ynp_psicologia'
+    });
+  }
+};

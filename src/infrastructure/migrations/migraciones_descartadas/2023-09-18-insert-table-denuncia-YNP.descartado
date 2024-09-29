@@ -1,0 +1,188 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+const { ABOGADOS } = require('./jsonYANAPIRI/ABOGADOS.js');
+
+//items = setTimestampsSeeder(items);
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      let items = [];
+      let victimas = [];
+      let denunciantes = [];
+      let denunciados = [];
+      let delitos = [];
+      let insertRol = [];
+      for (let z = 0; z < ABOGADOS.length; z++) {
+        const elm = ABOGADOS[z];
+        const sbtr = (elm.created_at + '').substring(0,10);
+        if ( elm.Anio != '2023' && sbtr != '2023' ) {
+          const idDenuncia = uuidv4();
+
+          const pramGrupoData = await queryInterface.sequelize.query(
+              `SELECT * FROM sys_parametro WHERE grupo = 'CIUDAD_SEPDAVI';`
+          );
+          const DEPARTAMENTOS = pramGrupoData[0];
+
+          const areaGrupoData = await queryInterface.sequelize.query(
+              `SELECT * FROM sys_parametro WHERE grupo = 'AREA_GEOGRAFICA';`
+          );
+          const AREAGEOGRAFICA = areaGrupoData[0];
+
+          const paramDelitoData = await queryInterface.sequelize.query(
+              `SELECT * FROM sys_parametro WHERE nombre ilike '%${elm.delito}%';`
+          );
+          const DELITODATA = paramDelitoData[0];
+          const paramDelito = DELITODATA.pop();
+
+          const idDepartamento = sacarIdDepartamento(DEPARTAMENTOS, elm.departamentoRegion);
+          const idArea = sacarIdArea(AREAGEOGRAFICA, elm.areaGeografica);
+
+          const tipoParticipanteData = await queryInterface.sequelize.query(
+              `SELECT * FROM sys_parametro WHERE grupo = 'TIPO_PARTICIPANTE';`
+          );
+          const TIPOPARTICIPANTE = tipoParticipanteData[0];
+
+          const paramGeneroData = await queryInterface.sequelize.query(
+              `SELECT * FROM sys_parametro WHERE nombre ilike '%${elm.generoVictima}%';`
+          );
+          const GENERODATA = paramGeneroData[0];
+          const paramGenero = GENERODATA.pop();
+
+          const paramVictima = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'VICTIMA' });
+          const paramDenunciante = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'DENUNCIANTE' });
+          const paramDenunciado = TIPOPARTICIPANTE.find(dat=> { return dat.nombre == 'DENUNCIADO' });
+
+          const denuncia = {
+            id: idDenuncia,
+            id_ciudad: idDepartamento,
+            id_tipo_proceso: '0a190c5a-c5b7-47d1-9bad-faef5f8689d2',
+            id_usuario_asignado: '7171272e-b31b-4c34-9220-9f535c950000',
+            estado_actual: 'SEGUIMIENTO',
+            etapa_actual: 'SEGUIMIENTO',
+            id_entidad: 'bb01a8b1-dce1-43f2-8ae0-25526d9c52d5',
+            estado: 'ACTIVO',
+            area_geografica: idArea,
+            codigo_ynp: elm.numeroCaso,
+            id_ynp: elm.id,
+            anio_ynp: elm.Anio,
+            usuario_information_ynp: elm.name,
+            tabla_ynp: 'information',
+            created_ynp: elm.created_at,
+            updated_ynp: elm.updated_at,
+            fecha_inicio_proceso_ynp: elm.fechaInicioProceso
+          }
+
+          const delito = {
+            id: uuidv4(),
+            id_denuncia: idDenuncia,
+            id_parametro_delito: paramDelito?.id,
+            estado: 'ACTIVO',
+          }
+
+          const victima = {
+            id: uuidv4(),
+            id_denuncia: idDenuncia,
+            id_tipo_participante: paramVictima?.id,
+            id_genero: paramGenero?.id,
+            edad_hecho: elm.edadVictima,
+            nombre_completo: elm.nombreVictima,
+            telefono: elm.numeroVictima
+          }
+
+          if ( elm.nombreDenunciante ) {
+            denunciantes.push({
+              id: uuidv4(),
+              id_denuncia: idDenuncia,
+              id_tipo_participante: paramDenunciante?.id,
+              nombre_completo: elm.nombreDenunciante
+            });
+          }
+
+          if ( elm.nombreSindicado ) {
+            denunciados.push({
+              id: uuidv4(),
+              id_denuncia: idDenuncia,
+              id_tipo_participante: paramDenunciado?.id,
+              nombre_completo: elm.nombreSindicado,
+              telefono: elm.numeroContactoSindicado
+            });
+          }
+
+          //cambiar de acuerdo al entorno
+
+          insertRol.push({
+            id: uuidv4(),
+            id_rol: 'c25d767c-748b-4aee-9d0f-60057e79dbbc',
+            id_denuncia: idDenuncia,
+            nombre_rol: 'VENTANILLA',
+            estado: 'ACTIVO'
+          });
+
+          insertRol.push({
+            id: uuidv4(),
+            id_rol: '9e39ecc2-5750-4485-b44f-701040a513eb',
+            id_denuncia: idDenuncia,
+            nombre_rol: 'ABOGADO',
+            estado: 'ACTIVO'
+          });
+
+          items.push(denuncia);
+          victimas.push(victima);
+          delitos.push(delito);
+
+        }
+      }
+      items = setTimestampsSeeder(items);
+      victimas = setTimestampsSeeder(victimas);
+      delitos = setTimestampsSeeder(delitos);
+      insertRol = setTimestampsSeeder(insertRol);
+      await queryInterface.bulkInsert('denuncia', items, {});
+      await queryInterface.bulkInsert('participante', victimas, {});
+      await queryInterface.bulkInsert('denuncia_delito', delitos, {});
+      await queryInterface.bulkInsert('denuncia_llenado_rol', insertRol, {});
+      if (denunciantes.length > 0) {
+        denunciantes =  setTimestampsSeeder(denunciantes);
+        await queryInterface.bulkInsert('participante', denunciantes, {});
+      }
+      if (denunciados.length > 0) {
+        denunciados =  setTimestampsSeeder(denunciados);
+        await queryInterface.bulkInsert('participante', denunciados, {});
+      }
+    },
+    down (queryInterface, Sequelize) {}
+};
+
+function sacarIdDepartamento (DEPARTAMENTOS, data) {
+    let nombre = '';
+    switch (data) {
+        case 'Potosí':nombre='POTOSÍ';break;
+        case 'El Alto':nombre='EL ALTO';break;
+        case 'Chuquisaca':nombre='SUCRE';break;
+        case 'Santa Cruz':nombre='SANTA CRUZ';break;
+        case 'Tarija':nombre='TARIJA';break;
+        case 'Oruro':nombre='ORURO';break;
+        case 'Cochabamba':nombre='COCHABAMBA';break;
+        default: break;
+    }
+    const departamento = DEPARTAMENTOS.find(dat=>{ return dat.nombre == nombre });
+    if(departamento) return departamento.id;
+    return null
+}
+
+function sacarIdArea (AREA, data) {
+    let nombre = '';
+    switch (data) {
+        case 'Urbana':nombre='URBANA';break;
+        case 'Rural':nombre='RURAL';break;
+        default: break;
+    }
+    const area = AREA.find(dat=>{ return dat.nombre == nombre });
+    if(area) return area.id;
+    return null
+}

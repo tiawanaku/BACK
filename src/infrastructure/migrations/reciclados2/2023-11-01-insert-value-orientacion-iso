@@ -1,0 +1,26 @@
+'use strict';
+
+const {
+  setTimestampsSeeder
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+let items = [{
+  id: uuidv4(),
+  celda_codigo: 'Cód.: R-CNAL-01',
+  celda_fecha: 'Fecha de aprobación: 12/05/2023',
+  celda_version: 'Versión: 1.0',
+  celda_descripcion: 'Orientación',
+  titulo: 'ORIENTACIÓN',
+  tipo: 'FORMULARIO'
+}];
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      
+      items = setTimestampsSeeder(items);
+      await queryInterface.bulkInsert('orientacion_header', items, {});
+    },
+    down (queryInterface, Sequelize) {}
+};

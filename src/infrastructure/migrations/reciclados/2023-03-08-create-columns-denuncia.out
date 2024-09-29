@@ -1,0 +1,22 @@
+'use strict';
+
+const tableName = 'denuncia';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.prioritario) {
+          await queryInterface.addColumn(tableName, 'prioritario', {
+            type         : Sequelize.BOOLEAN,
+            allowNull    : false,
+            defaultValue : false,
+            xlabel       : 'prioritario',
+            field        : 'prioritario'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};

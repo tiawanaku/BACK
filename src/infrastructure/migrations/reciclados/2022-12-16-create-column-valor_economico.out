@@ -1,0 +1,21 @@
+'use strict';
+
+const tableName = 'bienes_cautelados';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.valor_economico) {
+          await queryInterface.addColumn(tableName, 'valor_economico', {
+            type         : Sequelize.STRING(20),
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'valorEconomico',
+            field        : 'valor_economico'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

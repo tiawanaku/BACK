@@ -1,0 +1,22 @@
+'use strict';
+
+const tableName = 'denuncia';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.asignacion_anterior) {
+          await queryInterface.addColumn(tableName, 'asignacion_anterior', {
+            type         : Sequelize.ARRAY(Sequelize.UUID),
+            allowNull    : true,
+            defaultValue : [],
+            xlabel       : lang.t('fields.asignacionAnterior'),
+            field        : 'asignacion_anterior'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

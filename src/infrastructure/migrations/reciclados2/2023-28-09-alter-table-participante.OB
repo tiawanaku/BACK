@@ -1,0 +1,524 @@
+'use strict';
+
+const tableName = 'participante';
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+
+          if (!tableDefinition.contencion_emocional) {
+            await queryInterface.addColumn(tableName, 'contencion_emocional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.contencionEmocional'),
+              field        : 'contencion_emocional'
+            });
+          }
+
+          if (!tableDefinition.numero_intervencion_contencion) {
+            await queryInterface.addColumn(tableName, 'numero_intervencion_contencion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroIntervencionContencion'),
+              field        : 'numero_intervencion_contencion'
+            });
+          }
+
+          if (!tableDefinition.fecha_contencion) {
+            await queryInterface.addColumn(tableName, 'fecha_contencion', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaContencion'),
+              field        : 'fecha_contencion'
+            });
+          }
+
+          if (!tableDefinition.hora_ingreso_contencion) {
+            await queryInterface.addColumn(tableName, 'hora_ingreso_contencion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaIngresoContencion'),
+              field        : 'hora_ingreso_contencion'
+            });
+          }
+
+          if (!tableDefinition.hora_salida_contencion) {
+            await queryInterface.addColumn(tableName, 'hora_salida_contencion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaSalidaContencion'),
+              field        : 'hora_salida_contencion'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_contencion) {
+            await queryInterface.addColumn(tableName, 'desarrollo_contencion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloContencion'),
+              field        : 'desarrollo_contencion'
+            });
+          }
+
+          if (!tableDefinition.acompanamiento_victima) {
+            await queryInterface.addColumn(tableName, 'acompanamiento_victima', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.acompanamientoVictima'),
+              field        : 'acompanamiento_victima'
+            });
+          }
+
+          if (!tableDefinition.numero_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'numero_acompanamiento', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroAcompanamiento'),
+              field        : 'numero_acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.detalle_actuado_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'detalle_actuado_acompanamiento', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.detalleActuadoAcompanamiento'),
+              field        : 'detalle_actuado_acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.fecha_Acompanamiento) {
+            await queryInterface.addColumn(tableName, 'fecha_Acompanamiento', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaAcompanamiento'),
+              field        : 'fecha_Acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.hora_inicio_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'hora_inicio_acompanamiento', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaInicioAcompanamiento'),
+              field        : 'hora_inicio_acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.hora_fin_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'hora_fin_acompanamiento', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaFinAcompanamiento'),
+              field        : 'hora_fin_acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'desarrollo_acompanamiento', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloAcompanamiento'),
+              field        : 'desarrollo_acompanamiento'
+            });
+          }
+
+          if (!tableDefinition.orientacion_psicoeducativa) {
+            await queryInterface.addColumn(tableName, 'orientacion_psicoeducativa', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.orientacionPsicoeducativa'),
+              field        : 'orientacion_psicoeducativa'
+            });
+          }
+
+          if (!tableDefinition.numero_intervencion_orientacion) {
+            await queryInterface.addColumn(tableName, 'numero_intervencion_orientacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroIntervencionOrientacion'),
+              field        : 'numero_intervencion_orientacion'
+            });
+          }
+
+          if (!tableDefinition.fecha_orientacion) {
+            await queryInterface.addColumn(tableName, 'fecha_orientacion', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaOrientacion'),
+              field        : 'fecha_orientacion'
+            });
+          }
+
+          if (!tableDefinition.hora_inicio_orientacion) {
+            await queryInterface.addColumn(tableName, 'hora_inicio_orientacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaInicioOrientacion'),
+              field        : 'hora_inicio_orientacion'
+            });
+          }
+
+          if (!tableDefinition.hora_fin_orientacion) {
+            await queryInterface.addColumn(tableName, 'hora_fin_orientacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaFinOrientacion'),
+              field        : 'hora_fin_orientacion'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_orientacion) {
+            await queryInterface.addColumn(tableName, 'desarrollo_orientacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloOrientacion'),
+              field        : 'desarrollo_orientacion'
+            });
+          }
+
+          if (!tableDefinition.evaluacion) {
+            await queryInterface.addColumn(tableName, 'evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.evaluacion'),
+              field        : 'evaluacion'
+            });
+          }
+
+          if (!tableDefinition.instrumentos_evaluacion) {
+            await queryInterface.addColumn(tableName, 'instrumentos_evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.instrumentosEvaluacion'),
+              field        : 'instrumentos_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.numero_evaluacion) {
+            await queryInterface.addColumn(tableName, 'numero_evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroEvaluacion'),
+              field        : 'numero_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.fecha_evaluacion) {
+            await queryInterface.addColumn(tableName, 'fecha_evaluacion', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaEvaluacion'),
+              field        : 'fecha_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.hora_inicio_evaluacion) {
+            await queryInterface.addColumn(tableName, 'hora_inicio_evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaInicioEvaluacion'),
+              field        : 'hora_inicio_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.hora_fin_evaluacion) {
+            await queryInterface.addColumn(tableName, 'hora_fin_evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaFinEvaluacion'),
+              field        : 'hora_fin_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_evaluacion) {
+            await queryInterface.addColumn(tableName, 'desarrollo_evaluacion', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloEvaluacion'),
+              field        : 'desarrollo_evaluacion'
+            });
+          }
+
+          if (!tableDefinition.terapia_psicologica) {
+            await queryInterface.addColumn(tableName, 'terapia_psicologica', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.terapiaPsicologica'),
+              field        : 'terapia_psicologica'
+            });
+          }
+
+          if (!tableDefinition.enfoque_terapia) {
+            await queryInterface.addColumn(tableName, 'enfoque_terapia', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.enfoqueTerapia'),
+              field        : 'enfoque_terapia'
+            });
+          }
+
+          if (!tableDefinition.numero_intervencion_terapeutico) {
+            await queryInterface.addColumn(tableName, 'numero_intervencion_terapeutico', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroIntervencionTerapeutico'),
+              field        : 'numero_intervencion_terapeutico'
+            });
+          }
+
+          if (!tableDefinition.fecha_terapeutico) {
+            await queryInterface.addColumn(tableName, 'fecha_terapeutico', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaTerapeutico'),
+              field        : 'fecha_terapeutico'
+            });
+          }
+
+          if (!tableDefinition.hora_inicio_terapeutico) {
+            await queryInterface.addColumn(tableName, 'hora_inicio_terapeutico', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaInicioTerapeutico'),
+              field        : 'hora_inicio_terapeutico'
+            });
+          }
+
+          if (!tableDefinition.hora_fin_terapeutico) {
+            await queryInterface.addColumn(tableName, 'hora_fin_terapeutico', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaFinTerapeutico'),
+              field        : 'hora_fin_terapeutico'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_terapeutico) {
+            await queryInterface.addColumn(tableName, 'desarrollo_terapeutico', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloTerapeutico'),
+              field        : 'desarrollo_terapeutico'
+            });
+          }
+
+          if (!tableDefinition.actividad) {
+            await queryInterface.addColumn(tableName, 'actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.actividad'),
+              field        : 'actividad'
+            });
+          }
+
+          if (!tableDefinition.nombre_actividad) {
+            await queryInterface.addColumn(tableName, 'nombre_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.nombreActividad'),
+              field        : 'nombre_actividad'
+            });
+          }
+
+          if (!tableDefinition.objetivo_actividad) {
+            await queryInterface.addColumn(tableName, 'objetivo_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.objetivoActividad'),
+              field        : 'objetivo_actividad'
+            });
+          }
+
+          if (!tableDefinition.responsable_actividad) {
+            await queryInterface.addColumn(tableName, 'responsable_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.responsableActividad'),
+              field        : 'responsable_actividad'
+            });
+          }
+
+          if (!tableDefinition.id_dirigido_actividad) {
+            await queryInterface.addColumn(tableName, 'id_dirigido_actividad', {
+              type         : Sequelize.UUID,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.idDirigidoActividad'),
+              field        : 'id_dirigido_actividad'
+            });
+          }
+
+          if (!tableDefinition.especificar_actividad) {
+            await queryInterface.addColumn(tableName, 'especificar_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.especificarActividad'),
+              field        : 'especificar_actividad'
+            });
+          }
+
+          if (!tableDefinition.numero_actividad) {
+            await queryInterface.addColumn(tableName, 'numero_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.numeroActividad'),
+              field        : 'numero_actividad'
+            });
+          }
+
+          if (!tableDefinition.fecha_actividad) {
+            await queryInterface.addColumn(tableName, 'fecha_actividad', {
+              type         : Sequelize.DATE,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.fechaActividad'),
+              field        : 'fecha_actividad'
+            });
+          }
+
+          if (!tableDefinition.hora_inicio_actividad) {
+            await queryInterface.addColumn(tableName, 'hora_inicio_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaInicioActividad'),
+              field        : 'hora_inicio_actividad'
+            });
+          }
+
+          if (!tableDefinition.hora_fin_actividad) {
+            await queryInterface.addColumn(tableName, 'hora_fin_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.horaFinActividad'),
+              field        : 'hora_fin_actividad'
+            });
+          }
+
+          if (!tableDefinition.desarrollo_actividad) {
+            await queryInterface.addColumn(tableName, 'desarrollo_actividad', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.desarrolloActividad'),
+              field        : 'desarrollo_actividad'
+            });
+          }
+
+          if (!tableDefinition.coordinacion_interinstitucional) {
+            await queryInterface.addColumn(tableName, 'coordinacion_interinstitucional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.coordinacionInterinstitucional'),
+              field        : 'coordinacion_interinstitucional'
+            });
+          }
+
+          if (!tableDefinition.a_interinstitucional) {
+            await queryInterface.addColumn(tableName, 'a_interinstitucional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.aInterinstitucional'),
+              field        : 'a_interinstitucional'
+            });
+          }
+
+          if (!tableDefinition.de_interinstitucional) {
+            await queryInterface.addColumn(tableName, 'de_interinstitucional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.deInterinstitucional'),
+              field        : 'de_interinstitucional'
+            });
+          }
+
+          if (!tableDefinition.referencia_interinstitucional) {
+            await queryInterface.addColumn(tableName, 'referencia_interinstitucional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.referenciaInterinstitucional'),
+              field        : 'referencia_interinstitucional'
+            });
+          }
+
+          if (!tableDefinition.descripcion_interinstitucional) {
+            await queryInterface.addColumn(tableName, 'descripcion_interinstitucional', {
+              type         : Sequelize.TEXT,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.descripcionInterinstitucional'),
+              field        : 'descripcion_interinstitucional'
+            });
+          }
+
+          if (!tableDefinition.id_edad_contencion) {
+            await queryInterface.addColumn(tableName, 'id_edad_contencion', {
+              type         : Sequelize.UUID,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.idEdadContencion'),
+              field        : 'id_edad_contencion'
+            });
+          }
+
+          if (!tableDefinition.id_tipo_acompanamiento) {
+            await queryInterface.addColumn(tableName, 'id_tipo_acompanamiento', {
+              type         : Sequelize.UUID,
+              allowNull    : true,
+              defaultValue : null,
+              xlabel       : lang.t('fields.idTipoAcompanamiento'),
+              field        : 'id_tipo_acompanamiento'
+            });
+          }
+
+        return Promise.resolve();
+      });
+  }
+};

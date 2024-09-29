@@ -1,0 +1,45 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      entidad : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.entidad'),
+        field     : 'entidad'
+      },
+      gestion : {
+        type      : Sequelize.DataTypes.INTEGER,
+        allowNull : false,
+        xlabel    : lang.t('fields.gestion'),
+        field     : 'gestion'
+      },
+      contador : {
+        type      : Sequelize.DataTypes.INTEGER,
+        allowNull : false,
+        xlabel    : lang.t('fields.contador'),
+        field     : 'contador'
+      },
+      sigla : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.sigla'),
+        field     : 'sigla'
+      },
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('correlativo_sepdavi', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'correlativo_sepdavi'
+    });
+  }
+};

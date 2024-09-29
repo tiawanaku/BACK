@@ -1,0 +1,61 @@
+'use strict';
+
+const tableName = 'participante';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.fecha_sentencia) {
+          await queryInterface.addColumn(tableName, 'fecha_sentencia', {
+            type         : Sequelize.DATEONLY,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'fechaSentencia',
+            field        : 'fecha_sentencia'
+          });
+        }
+
+        if (!tableDefinition.anios_sentencia) {
+          await queryInterface.addColumn(tableName, 'anios_sentencia', {
+            type         : Sequelize.INTEGER,
+            allowNull    : false,
+            defaultValue : 0,
+            xlabel       : 'aniosSentencia',
+            field        : 'anios_sentencia'
+          });
+        }
+
+        if (!tableDefinition.dias_multa) {
+          await queryInterface.addColumn(tableName, 'dias_multa', {
+            type         : Sequelize.INTEGER,
+            allowNull    : false,
+            defaultValue : 0,
+            xlabel       : 'diasMulta',
+            field        : 'dias_multa'
+          });
+        }
+
+        if (!tableDefinition.estimacion_monetaria) {
+          await queryInterface.addColumn(tableName, 'estimacion_monetaria', {
+            type         : Sequelize.DOUBLE,
+            allowNull    : false,
+            defaultValue : 0,
+            xlabel       : 'estimacionMonetaria',
+            field        : 'estimacion_monetaria'
+          });
+        }
+
+        if (!tableDefinition.sentencia_absolutoria) {
+          await queryInterface.addColumn(tableName, 'sentencia_absolutoria', {
+            type         : Sequelize.TEXT,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'sentenciaAbsolutoria',
+            field        : 'sentencia_absolutoria'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

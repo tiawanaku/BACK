@@ -1,0 +1,225 @@
+@baseUrl = http://localhost:3000
+@rdpVersion = api
+
+### Login
+# @name loginResponse
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "usuario": "admin",
+  "contrasena": "Developer"
+}
+
+#### Variable Response
+@accessToken = {{ loginResponse.response.body.$.datos.token }}
+
+
+
+### DENUNCIAS
+### Listar denuncias
+GET {{baseUrl}}/api/denuncias/denuncia?idTipoProceso=0113b3c4-3d24-4f4a-955d-76a49e01fb95
+Authorization: Bearer {{accessToken}}
+
+
+### Listar una denuncia por id
+GET {{baseUrl}}/api/denuncias/denuncia/3aa80daf-cb00-47e4-bb90-6fc83d5e2b6c
+Authorization: Bearer {{accessToken}}
+
+
+### Crear denuncia
+# @name denunciaResponse
+POST {{baseUrl}}/api/denuncias/denuncia
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "idTipoProceso": "0113b3c4-3d24-4f4a-955d-76a49e01fb95",
+    "idEstado": "40c3ddc2-e839-451d-95c9-a259ea781751",
+    "fechaDenuncia": "2021-09-24",
+    "lugarHecho": "SANTA CRUZ",
+    "lugarRegistro": "SANTA CRUZ",
+    "denominacion": "DENUNCIA",
+    "delitos": [
+      "e791430e-07eb-4eb7-9588-df16c2706871"
+    ],
+    "numeroFiscalia": "",
+    "nurej": "",
+    "fiscal": "",
+    "juzgado": "",
+    "policia": "",
+    "relacionHecho": "AAAAAAAAModo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque respondeat, tertiam, u",
+    "participantes": [
+        {
+            "idTipoParticipante": "00f7ba7a-6954-4fa9-95dd-7a38e2409c5d",
+            "idTipoDocumento": "1d1866c6-4cc6-4957-a308-8638b8560355",
+            "numeroDocumento": "111111",
+            "nombreRazonSocial": "GRUPILLO IVAN Z",
+            "direccion": "CALLE/ZONA MES",
+            "ocupacion": "123123asasdasddasdaasdasdasd",
+            "idGenero": "99693b34-e7a7-4429-88e3-2ed0066bc5c2",
+            "edad": "2",
+            "id": 1
+        }
+    ]
+}
+#### Variable Response
+@idDenuncia = {{ denunciaResponse.response.body.$.datos.id }}
+
+
+
+#### Seguimiento
+### Listar seguimiento
+GET {{baseUrl}}/api/denuncias/seguimiento?idDenuncia=9f342789-685c-42e9-8230-9cc1acd6098f
+Authorization: Bearer {{accessToken}}
+
+
+
+### Crear seguimiento
+POST {{baseUrl}}/api/denuncias/seguimiento
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "idDenuncia": "{{idDenuncia}}",
+  "fechaActuacion": "2021-10-10",
+  "actuacion": "Ejemplo de actuacion",
+  "idEtapa": "8a16e356-bf95-4182-bed6-f3d551b8087a",
+  "descripcionArchivo": "descripcion",
+  "archivos": [
+    {
+      "descripcion": "archivo para informar sobre cambios",
+      "archivo": "ruta del archivo"
+    }
+  ]
+}
+
+
+#### Participante
+### Listar participante
+GET {{baseUrl}}/api/denuncias/participante
+Authorization: Bearer {{accessToken}}
+
+
+
+### Crear participante
+POST {{baseUrl}}/api/denuncias/participante
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "idDenuncia": "17783705-3fa5-475d-adee-1f189454f973",
+  "fechaActuacion": "2021-09-20",
+  "actuacion": "Alguna actuacion"
+}
+
+
+
+#### Proceso
+### Listar proceso
+GET {{baseUrl}}/api/denuncias/proceso
+Authorization: Bearer {{accessToken}}
+
+
+#### Proceso
+### Listar proceso por UUID
+GET {{baseUrl}}/api/denuncias/proceso/7d98dd0d-740f-4025-ae80-07bfed39e627
+Authorization: Bearer {{accessToken}}
+
+
+### Crear proceso
+POST {{baseUrl}}/api/denuncias/proceso
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "nombre": "JURIDICA",
+  "descripcion": "Descripcion de el proceso juridico.",
+  "formularios": [
+    "3b164c6e-2a31-4756-af14-54e14493b344"
+  ]
+}
+
+
+### Actualizar proceso
+PUT {{baseUrl}}/api/denuncias/proceso/b09210b6-acba-4bce-a74e-44735fb6119a
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "nombre": "JURIDICA",
+  "descripcion": "Descripcion de el proceso juridico.",
+  "formularios": [
+    "3b164c6e-2a31-4756-af14-54e14493b344"
+  ]
+}
+
+#### Formulario
+### Listar formulario
+GET {{baseUrl}}/api/denuncias/formulario?idProceso=b09210b6-acba-4bce-a74e-44735fb6119a
+Authorization: Bearer {{accessToken}}
+
+
+
+### Crear formulario
+POST {{baseUrl}}/api/denuncias/formulario
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "configuracion": {
+    "titulo": "Formulario de denunciante",
+    "datos": [
+      {
+        "tipo": "input"
+      }
+    ]
+  }
+}
+
+
+
+
+#### Parametro
+### Listar parametro
+GET {{baseUrl}}/api/system/parametros?grupo=DENUNCIA&idProceso=0113b3c4-3d24-4f4a-955d-76a49e01fb95
+Authorization: Bearer {{accessToken}}
+
+
+#### dpa
+### Listar dpa
+GET {{baseUrl}}/api/system/dpa?nivel=2
+Authorization: Bearer {{accessToken}}
+
+
+
+#### dpa
+### Listar dpa
+GET {{baseUrl}}/generar-dpa
+Authorization: Bearer {{accessToken}}
+
+
+
+#### reportes
+### Listar reportes departamento
+GET {{baseUrl}}/api/denuncias/reporte/denuncias?idTipoProceso=0113b3c4-3d24-4f4a-955d-76a49e01fb95&lugarHecho=ORURO
+Authorization: Bearer {{accessToken}}
+
+### Listar reportes etapa
+GET {{baseUrl}}/api/denuncias/reporte/denuncias-etapa?idTipoProceso=0113b3c4-3d24-4f4a-955d-76a49e01fb95&lugarHecho=ORURO
+Authorization: Bearer {{accessToken}}
+
+
+### Consulta filtros
+## Listar con filtros
+GET {{baseUrl}}/api/denuncias/denuncia?busquedaAvanzada=true&nombrePartes=CARMEN ROSA&limit=10&page=1&order=-_created_at
+Authorization: Bearer {{accessToken}}
+
+
+
+
+### Usuarios
+## Listar de usuarios
+GET {{baseUrl}}/api/system/usuarios?idProceso=4d91833a-98f9-4b4d-a901-5bcc34bbe000
+Authorization: Bearer {{accessToken}}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-left: solid 1px black;
+      padding: 8px;
+    }
+
+    .line {
+      border-bottom: solid 1px black;
+    }
+
+    .mi-tabla {
+      border-collapse: collapse;
+    }
+
+    table.mi-tabla .mi-tabla th, .mi-tabla td {
+      border: none;
+    }
+
+    .rightline {
+      border-right: solid 1px black;
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 6px;
+    }
+
+    .text-sm-declaraciones {
+      font-size: 8px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="4">
+          <table class="mi-tabla line">
+            <tbody>
+              <tr>
+                <td style="width: 150px;"><img width="150px" height="150px" src=<%= imagen %> alt="" class="size-img" /></td>
+                <td><h1 class="text-center">GOBIERNO MUNICIPAL Defensoria de la Niñez y Adolescencia</h1></td>
+                <!-- <td><img width="200px" src=<%= imagen %> alt="" class="size-img" /></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center" rowspan="2">SID Sistema de Información de Defensorias</td>
+        <td class="text-sm text-center">Registro de Atención y/o Denuncia</td>
+        <td class="text-sm">Fecha: <%= denuncia.fechaIngreso %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center" colspan="2"><%= denuncia.correlativoGamea %></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center" colspan="3">(Establecido en el Reglamento del Código del Niño, Niña y Adolescente - Art. 88)</td>
+      </tr>
+      <tr>
+        <td class="text-sm" colspan="4"><strong>EL FORMULARIO DEBE SER LLENADO SEGÚN LA GUIA DE FUNCIONAMIENTO DE DEFENSORIAS.
+          PROCURE REGISTRAR LOS DATOS DE LA FORMA MAS LEGIBLE POSIBLE, EN CASO DE NO CONTAR CON NINGUNO, MARQUE CON UNA RAYA</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm"><strong>tipologias</strong></td>
+        <td class="text-sm text-center">tipologia prueba</td>
+        <td class="text-sm text-center">prueba</td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center">delitos</td>
+        <td class="text-sm text-center">tipologia prueba</td>
+        <td class="text-sm text-center">prueba</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table >
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="13"><strong>2. DATOS DE LA  NIÑA, NIÑO O ADOLESCENTE (incluir solo a niñas, niños y adolescentes cuyos derechos son protegidos o definidos por la DNA)</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center" rowspan="2">Nro</td>
+        <td class="text-sm text-center" rowspan="2">Nombres y Apellidos</td>
+        <td class="text-sm text-center" rowspan="2">(Si se trata de gestantes, colocar NN y el nombre de la madre)</td>
+        <td class="text-sm text-center" colspan="2">Gestante</td>
+        <td class="text-sm text-center" colspan="2">Edad</td>
+        <td class="text-sm text-center" colspan="2">Sexo</td>
+        <td class="text-sm text-center" colspan="2">C. Nac.</td>
+        <!--<td class="text-sm text-center" colspan="2">Estudia</td>-->
+        <td class="text-sm text-center" rowspan="2">Último Curso</td>
+        <td class="text-sm text-center" rowspan="2">Tipo de Trabajo</td>
+      </tr>
+      <tr>
+        <td class="text-sm text-center">SI</td>
+        <td class="text-sm text-center">NO</td>
+        <td class="text-sm text-center">Año</td>
+        <td class="text-sm text-center">Mes</td>
+        <td class="text-sm text-center">F</td>
+        <td class="text-sm text-center">M</td>
+        <!-- <td class="text-sm text-center">SI</td>
+        <td class="text-sm text-center">NO</td> -->
+        <td class="text-sm text-center">SI</td>
+        <td class="text-sm text-center">NO</td>
+      </tr>
+      <% victimas.forEach((vc,index) => {%>
+        <tr>
+          <td class="text-sm text-center"><%= index+1 %></td>
+          <td class="text-sm text-center" colspan="2"><%= vc.nombreCompleto %></td>
+          <td class="text-sm text-center"><%= vc.gestante?.nombre == "SI" ? "X" : "" %></td>
+          <td class="text-sm text-center"><%= vc.gestante?.nombre == "NO" ? "X" : "" %></td>
+          <td class="text-sm text-center"><%= vc.fechaNacimiento?.substr(0,4) %></td>
+          <td class="text-sm text-center"><%= vc.fechaNacimiento?.substr(5,6) %></td>
+          <td class="text-sm text-center"><%= vc.genero?.nombre == "Femenino" ? "X" : "" %></td>
+          <td class="text-sm text-center"><%= vc.genero?.nombre == "Masculino" ? "X" : "" %></td>
+          <td class="text-sm text-center"><%= vc.tipoDocumento?.nombre == "Certificado de Nacimiento" ? "X" : "" %></td>
+          <td class="text-sm text-center"><%= vc.tipoDocumento?.nombre != "Certificado de Nacimiento" ? "X" : "" %></td>
+          <!-- <td class="text-sm text-center">11</td>
+          <td class="text-sm text-center">12</td> -->
+          <td class="text-sm text-center"><%= vc.educativoEspecifique %></td>
+          <td class="text-sm text-center"><%= vc.tipoTrabajo %></td>
+        </tr>
+        <tr>
+          <td class="text-sm" colspan="3">Domicilio: <%= vc.calle %> <%= vc.numero %></td>
+          <td class="text-sm" colspan="10"><%= vc.calle %> <%= vc.numero %></td>
+        </tr>
+        <tr>
+          <td class="text-sm" colspan="3">Zona y/o Comunidad:</td>
+          <td class="text-sm" colspan="8"><%= vc.zona %></td>
+          <td class="text-sm">Teléfono</td>
+          <td class="text-sm"><%= vc.telefono %></td>
+        </tr>
+        <tr>
+          <td class="text-sm" colspan="3">Persona de Contacto:</td>
+          <td class="text-sm" colspan="8"><%= vc.personaContacto %></td>
+          <td class="text-sm">Teléfono Contacto</td>
+          <td class="text-sm"><%= vc.telefonoContacto %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="7"><strong>3. DATOS DEL GRUPO FAMILIAR</strong></td>
+      </tr>
+      <tr>
+        <td class="text-sm">Nro</td>
+        <td class="text-sm text-center">Nombres y Apellidos</td>
+        <td class="text-sm text-center">Parentesco</td>
+        <td class="text-sm text-center">Edad</td>
+        <td class="text-sm text-center">Sexo</td>
+        <td class="text-sm text-center">G. Instrucción</td>
+        <td class="text-sm text-center">Ocupación </td>
+      </tr>
+      <% grupoFamiliar.forEach((gf,index) => {%>
+        <tr>
+          <td class="text-sm"><%= index+1 %></td>
+          <td class="text-sm"><%= gf.nombreCompleto %></td>
+          <td class="text-sm"><%= gf.parentesco %></td>
+          <td class="text-sm"><%= gf.edad %></td>
+          <td class="text-sm"><%= gf.sexo %></td>
+          <td class="text-sm"><%= gf.gradoInstruccion %></td>
+          <td class="text-sm"><%= gf.ocupacion %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="6"><strong>4. DATOS DEL DENUNCIANTE (especificar la institución si corresponde)</strong></td>
+      </tr>
+      <% denunciantes.forEach((dt,index) => {%>
+        <tr>
+          <td class="text-sm">Nombres y Apellidos:</td>
+          <td class="text-sm"><%= dt.nombreCompleto %></td>
+          <td class="text-sm">Parentesco, tipo de relacion o institución</td>
+          <td class="text-sm"></td>
+          <td class="text-sm">C. I. : <%= dt.numeroDocumento %></td>
+          <td class="text-sm">G. Instrucción: <%= dt.gradoInstruccion?.nombre %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">Domicilio (zona o comunidad):</td>
+          <td class="text-sm" colspan="3"><%= dt.zona %> <%= dt.calle %> <%= dt.numero %></td>
+          <td class="text-sm">Teléfono:</td>
+          <td class="text-sm"><%= dt.telefono %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">Lugar de trabajo:</td>
+          <td class="text-sm" colspan="3"><%= dt.direccionLaboral %></td>
+          <td class="text-sm">Ocupación:</td>
+          <td class="text-sm"><%= dt.ocupacion %></td>
+        </tr>
+      <% });%>
+    </tbody>
+  </table>
+
+  <table class="line">
+    <tbody>
+      <tr>
+        <td class="text-sm" colspan="8"><strong>5. DATOS DE LA(S) PERSONAS(S) DENUNCIADA(S) (No llenar si se trata de Adolescente en conflicto con la Ley)</strong></td>
+      </tr>
+      <% denunciados.forEach((dd,index) => {%>
+        <tr>
+          <td class="text-sm">Nombres y Apellidos:</td>
+          <td class="text-sm"><%= dd.nombreCompleto %></td>
+          <td class="text-sm">SEXO</td>
+          <td class="text-sm"><%= dd.genero?.nombre %></td>
+          <td class="text-sm">EDAD</td>
+          <td class="text-sm"><%= dd.edad %></td>
+          <td class="text-sm">Parentesco, tipo de relacion o institución</td>
+          <td class="text-sm"><%= dd.parentesco %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">Domicilio (zona o comunidad):</td>
+          <td class="text-sm" colspan="5"><%= dd.zona %> <%= dd.calle %> <%= dd.numero %></td>
+          <td class="text-sm">Teléfono:</td>
+          <td class="text-sm"><%= dd.telefono %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">Lugar de trabajo:</td>
+          <td class="text-sm" colspan="5"><%= dd.direccionLaboral %></td>
+          <td class="text-sm">Ocupacion:</td>
+          <td class="text-sm"><%= dd.ocupacion %></td>
+        </tr>
+        <tr>
+          <td class="text-sm">¿Denunicas anteriores?</td>
+          <td class="text-sm">SI</td>
+          <td class="text-sm"></td>
+          <td class="text-sm">NO</td>
+          <td class="text-sm"></td>
+          <td class="text-sm">¿Donde fue denunciado anteriormente?</td>
+          <td class="text-sm" colspan="2"></td>
+        </tr>
+      <% });%>
+      <tr>
+        <td class="text-sm" colspan="8"><strong>LA INFORMACIÓN CONTENIDA EN ESTE REGISTRO, ES TOTALMENTE CONFIDENCIAL, DE ACUERDO AL ART. 10 DEL CODIGO DEL NIÑO, NIÑA Y ADOLESCENTE Y SOLO PODRA SER PROPORCIONADA A REQUERIMIENTO JUDICIAL O FISCAL.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <table class="mi-tabla line">
+    <tbody>
+      <tr>
+        <td class="text-center text-sm-declaraciones">
+          <br>
+          <br>
+          <br>
+          <br>
+          <hr width="200px">
+          <h4><%= solicitante.nombreCompleto %></h4>
+          <h4><%= solicitante.numeroDocumento %></h4>
+        </td>
+        <td class="text-center text-sm-declaraciones">
+          <br>
+          <br>
+          <br>
+          <br>
+          <hr width="200px">
+          <h4><%= usuario.nombres %> <%= usuario.primerApellido %> <%= usuario.segundoApellido %></h4>
+          <h4><%= usuario.numeroDocumento %></h4>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      idRol : {
+        type      : Sequelize.DataTypes.UUID,
+        allowNull : false,
+        xlabel    : lang.t('fields.idRol'),
+        field     : 'id_rol'
+      },
+      idDenuncia : {
+        type      : Sequelize.DataTypes.UUID,
+        allowNull : false,
+        xlabel    : lang.t('fields.idDenuncia'),
+        field     : 'id_denuncia'
+      },
+      nombreRol: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreRol'),
+        field     : 'nombre_rol'
+      },
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('denuncia_llenado_rol', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'denuncia_llenado_rol'
+    });
+  }
+};

@@ -1,0 +1,10 @@
+'use strict';
+
+const tableName = 'historial';
+const lang = require('../lang');
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.removeColumn(tableName, 'tipo');
+  }
+};

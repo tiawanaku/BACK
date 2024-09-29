@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+      border: solid 1px black;
+      width: 100%;
+      height: 100%;
+    }
+
+    tr, td {
+      border: solid 1px black;
+      padding: 10px;
+
+    }
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-md {
+      font-size: 12px;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+
+    .container {
+      width: 98vw;
+      height: 98vh;
+      border: solid 1px black;
+    }
+
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 350px;
+    }
+
+    .size-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 10em;
+      height: auto;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+  </style>
+</head>
+
+<body>
+  <img src=<%= imagen %> alt="" class="center" />
+  <h3 class="text-center">FICHA DE COORDINACIÓN INTERINSTITUCIONAL</h3>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-bold" width="150px">A:</td>
+        <td class="text-bold"><%= opcion.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-bold">DE:</td>
+        <td class="text-bold"><%= denuncia.defensoria ? denuncia.defensoria.nombre : denuncia.slim.nombre %></td>
+      </tr>
+      <tr>
+        <td class="text-bold">REFERENCIA:</td>
+        <td class="text-bold">SEGUIMIENTO PSI-SOCIO-LEGAL</td>
+      </tr>
+      <tr>
+        <td class="text-bold">FECHA:</td>
+        <td class="text-bold"><%= denuncia.fechaIngreso %></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <table >
+    <tbody>
+      <tr>
+        <td class="text-center" style="width: 200px;" >VÍCTIMAS: </td>
+        <td>
+          <% victimas.forEach((victima,index) => {%>
+            <li><%= victima.nombreCompleto %></li>
+          <% });%>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center">DENUNCIANTES: </td>
+        <td>
+          <% denunciantes.forEach((denunciante,index) => {%>
+            <li><%= denunciante.nombreCompleto %></li>
+          <% });%>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center">DENUNCIADOS: </td>
+        <td>
+          <% denunciados.forEach((denunciado,index) => {%>
+            <li><%= denunciado.nombreCompleto %></li>
+          <% });%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="text-center">REFERENCIA DEL CASO</h3>
+  <table>
+    <tbody>
+      <tr>
+        <td class="justify"><%= denuncia.reasonDefensoria ? denuncia.reasonDefensoria : denuncia.reasonSlim %></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+'use strict';
+
+const tableName = 'delito_precedente';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.id_categoria_delito) {
+          await queryInterface.addColumn(tableName, 'id_categoria_delito', {
+            type         : Sequelize.UUID,
+            allowNull    : true,
+            defaultValue : null,
+            xlabel       : 'idCategoriaDelito',
+            field        : 'id_categoria_delito'
+          });
+        }
+        return Promise.resolve();
+      });
+  }
+};

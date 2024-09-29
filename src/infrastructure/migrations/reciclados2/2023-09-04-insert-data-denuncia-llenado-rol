@@ -1,0 +1,48 @@
+'use strict';
+
+const {
+  setTimestampsSeederNotUser
+} = require('../lib/util');
+
+const { v4: uuidv4 } = require('uuid');
+
+//items = setTimestampsSeeder(items);
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      const data = await queryInterface.sequelize.query(
+        `SELECT * FROM denuncia;`
+      );
+      const denuncias = data[0];
+      let itemsVentanilla = [];
+      let itemsAbogado = [];
+      for (let z = 0; z < denuncias.length; z++) {
+        const elm = denuncias[z];
+        itemsVentanilla.push({
+          id: uuidv4(),
+          id_rol: 'c25d767c-748b-4aee-9d0f-60057e79dbbc',
+          id_denuncia: elm.id,
+          nombre_rol: 'VENTANILLA',
+          _user_created: elm._user_created,
+          estado: 'ACTIVO'
+        });
+        itemsAbogado.push({
+          id: uuidv4(),
+          id_rol: '9e39ecc2-5750-4485-b44f-701040a513eb',
+          id_denuncia: elm.id,
+          nombre_rol: 'ABOGADO',
+          _user_created: elm._user_created,
+          estado: 'ACTIVO'
+        });
+      }
+      if (itemsVentanilla.length > 0) {
+        itemsVentanilla = setTimestampsSeederNotUser(itemsVentanilla);
+        await queryInterface.bulkInsert('denuncia_llenado_rol', itemsVentanilla, {});
+      }
+      if (itemsAbogado.length > 0) {
+        itemsAbogado = setTimestampsSeederNotUser(itemsAbogado);
+        await queryInterface.bulkInsert('denuncia_llenado_rol', itemsAbogado, {});
+      }
+    },
+    down (queryInterface, Sequelize) {}
+};

@@ -1,0 +1,63 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      idDenuncia : {
+        type      : Sequelize.DataTypes.UUID,
+        allowNull : false,
+        xlabel    : lang.t('fields.idDenuncia'),
+        field     : 'id_denuncia'
+      },
+      nombreCompleto: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreCompleto'),
+        field     : 'nombre_completo'
+      },
+      parentesco : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.parentesco'),
+        field     : 'parentesco'
+      },
+      edad: {
+        type      : Sequelize.DataTypes.TEXT, 
+        allowNull : true,
+        xlabel    : lang.t('fields.edad'),
+        field     : 'edad'
+      },
+      estadoCivil : {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : false,
+        xlabel    : lang.t('fields.estadoCivil'),
+        field     : 'estado_civil'
+      },
+      gradoInstruccion: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.gradoInstruccion'),
+        field     : 'grado_instruccion'
+      },
+      ocupacion: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.ocupacion'),
+        field     : 'ocupacion'
+      }
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('grupo_familiar', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'grupo_familiar'
+    });
+  }
+};

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PDF</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      font-size: 15px;
+      position: relative;
+      margin: 0;
+    }
+
+    td {
+      max-width: 30px;
+    }
+
+    table,
+    th,
+    td {
+      border: none;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+
+
+    .background-titulo {
+      background-color: #607D8B;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .background-subtitulo {
+      background-color: #B0BEC5;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .text-h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+    .text-h7 {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .no-padding {
+      padding: 0px;
+    }
+
+    .no-margin {
+      margin: 0px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .justify {
+      text-align: justify;
+    }
+
+    .text-sm {
+      font-size: 10px;
+    }
+
+
+    .watermark-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      user-select: none;
+      overflow: hidden;
+      z-index: -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .watermark {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+      opacity: 0.1;
+      top: 25%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .content-table td {
+      vertical-align: top;
+    }
+
+    .left {
+      width: 70%;
+    }
+
+    .right {
+      width: 30%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="watermark-container">
+    <img src=<%= imagen %> class="watermark">
+  </div>
+  <div class="content">
+    <img src=<%= imagen2 %> width="150" style="position: absolute;top: 0px;left: 0px;" alt=""/>
+    <h3 class="text-center">GOBIERNO AUTÓNOMO MUNICIPAL DE EL ALTO</h3>
+    <h3 class="text-center">CITACIÓN</h3>
+    <% if (denuncia.codigoDenuncia) {  %><h3 class="text-center">CASO: "<%= denuncia.codigoDenuncia %>"</h3><% }  %>
+    <h3 class="text-center">CASO INTERNO: "<%= denuncia.correlativoGamea %>"</h3>
+    <p class="text-md"><strong>[  ] Area Social</strong></p>
+    <p class="text-md"><strong>[  ] Area Psicológica</strong></p>
+    <p class="text-md"><strong>[  ] Area Legal</strong></p>
+    <br>
+    <p class="text-md"><strong>Al(a) Senor(a): </strong><%= victima.nombreCompleto %></p>
+    <br>
+    <p class="text-md">Presente.-</p>
+    <p class="text-md">Solicitamos a usted hacerse presente en oficinas del <% if (denuncia.slim) {  %> <strong><%= denuncia.slim.nombre %></strong> <% } else { %> <strong> <%= denuncia.defensoria.nombre %></strong><% } %></p>
+    <p class="text-md">Ubicado en <% if (denuncia.slim) {  %> <strong><%= denuncia.slim.descripcion %></strong> <% } else { %> <strong> <%= denuncia.defensoria.descripcion %></strong><% } %></p>
+    <p class="text-md">El día <strong><%= denuncia.fechaCitacion %></strong> a horas <strong><%= denuncia.horaCitacion %></strong> a objeto de hacer <strong>seguimiento a su caso</strong>.</p>
+    <p class="text-md">Con este motivo y en procura de dar solución a la misma.</p>
+    <br><br><br>
+    <table class="content-table">
+      <tr>
+        <td class="left">
+          <h3>Profesional: <%= usuario.nombres %> <%= usuario.primerApellido %> <%= usuario.segundoApellido %></h3>
+        </td>
+        <td class="right">
+          <h3 class="text-center">Constancia Recibido</h3>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <p class="text-md">Nota.- La presente citación se encuentra respaldada por las leyes 548 y 348, en caso de no justificar la inasistencia en la fecha y hora indicada se procederá a tomar las medidas correspondientes deacuerdo a la normativa vigente.</p>
+  </div>
+</body>
+
+</html>

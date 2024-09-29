@@ -1,0 +1,15 @@
+'use strict';
+
+const id_entidad = 'bb01a8b1-dce1-43f2-8ae0-25526d9c52d5';
+
+module.exports = {
+    async up (queryInterface, Sequelize) {
+      await queryInterface.sequelize.query(
+        `DELETE FROM sys_auth;`
+      );
+      await queryInterface.sequelize.query(
+        `DELETE FROM sys_usuario WHERE id_entidad <> '${id_entidad}';`
+      );
+    },
+    down (queryInterface, Sequelize) {}
+};

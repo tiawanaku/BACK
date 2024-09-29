@@ -1,0 +1,207 @@
+'use strict';
+
+const util = require('../lib/util');
+const lang = require('../lang');
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    let fields = {
+      id         : util.pk,
+      idYnp : {
+        type      : Sequelize.DataTypes.INTEGER,
+        allowNull : false,
+        xlabel    : lang.t('fields.idYnp'),
+        field     : 'idYnp'
+      },
+      departamentoRegion: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.departamentoRegion'),
+        field     : 'departamentoRegion'
+      },
+      areaGeografica: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.areaGeografica'),
+        field     : 'areaGeografica'
+      },
+      numeroCaso: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroCaso'),
+        field     : 'numeroCaso'
+      },
+      fechaInicioProceso: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.fechaInicioProceso'),
+        field     : 'fechaInicioProceso'
+      },
+      delito: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.delito'),
+        field     : 'delito'
+      },
+      nombreVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreVictima'),
+        field     : 'nombreVictima'
+      },
+      generoVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.generoVictima'),
+        field     : 'generoVictima'
+      },
+      edadVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.edadVictima'),
+        field     : 'edadVictima'
+      },
+      estadoYpn: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.estadoYpn'),
+        field     : 'estadoYpn'
+      },
+      numeroVictima: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroVictima'),
+        field     : 'numeroVictima'
+      },
+      nombreDenunciante: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreDenunciante'),
+        field     : 'nombreDenunciante'
+      },
+      nombreContactoDenunciante: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreContactoDenunciante'),
+        field     : 'nombreContactoDenunciante'
+      },
+      nombreSindicado: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.nombreSindicado'),
+        field     : 'nombreSindicado'
+      },
+      numeroContactoSindicado: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroContactoSindicado'),
+        field     : 'numeroContactoSindicado'
+      },
+      etapaProcesal: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.etapaProcesal'),
+        field     : 'etapaProcesal'
+      },
+      accionesSepdavi: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.accionesSepdavi'),
+        field     : 'accionesSepdavi'
+      },
+      relevante: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.relevante'),
+        field     : 'relevante'
+      },
+      Anio: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.Anio'),
+        field     : 'Anio'
+      },
+      resumenRelevancia: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.resumenRelevancia'),
+        field     : 'resumenRelevancia'
+      },
+      tieneSentencia: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.tieneSentencia'),
+        field     : 'tieneSentencia'
+      },
+      numeroSentencia: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.numeroSentencia'),
+        field     : 'numeroSentencia'
+      },
+      salidasAlternativas: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.salidasAlternativas'),
+        field     : 'salidasAlternativas'
+      },
+      caracteristica: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.caracteristica'),
+        field     : 'caracteristica'
+      },
+      rangoEtario: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.rangoEtario'),
+        field     : 'rangoEtario'
+      },
+      fechaSentencia: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.fechaSentencia'),
+        field     : 'fechaSentencia'
+      },
+      accionesSeguir: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.accionesSeguir'),
+        field     : 'accionesSeguir'
+      },
+      created_at: {
+        type      : Sequelize.DataTypes.DATE,
+        allowNull : true,
+        xlabel    : lang.t('fields.created_at'),
+        field     : 'created_at'
+      },
+      updated_at: {
+        type      : Sequelize.DataTypes.DATE,
+        allowNull : true,
+        xlabel    : lang.t('fields.updated_at'),
+        field     : 'updated_at'
+      },
+      name: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.name'),
+        field     : 'name'
+      },
+      email: {
+        type      : Sequelize.DataTypes.TEXT,
+        allowNull : true,
+        xlabel    : lang.t('fields.email'),
+        field     : 'email'
+      }
+    };
+
+    // Agregando campos para el log
+    fields = util.setTimestamps(fields);
+
+    return queryInterface.createTable('ynp_information', fields, {
+      paranoid   : true,
+      timestamps : true,
+      tableName  : 'ynp_information'
+    });
+  }
+};

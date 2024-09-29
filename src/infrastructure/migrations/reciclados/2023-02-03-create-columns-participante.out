@@ -1,0 +1,22 @@
+'use strict';
+
+const tableName = 'participante';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.describeTable(tableName)
+      .then(async tableDefinition => {
+        if (!tableDefinition.meses_sentencia) {
+          await queryInterface.addColumn(tableName, 'meses_sentencia', {
+            type         : Sequelize.INTEGER,
+            allowNull    : true,
+            defaultValue : 0,
+            xlabel       : 'mesesSentencia',
+            field        : 'meses_sentencia'
+          });
+        }
+
+        return Promise.resolve();
+      });
+  }
+};
